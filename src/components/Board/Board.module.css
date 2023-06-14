@@ -1,0 +1,6 @@
+.Board {
+  display: grid;
+  max-width: fit-content;
+  grid-template-rows: repeat(var(--gridSize), 1fr);
+  grid-template-columns: repeat(var(--gridSize), 1fr);
+}
