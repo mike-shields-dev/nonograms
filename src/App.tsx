@@ -1,3 +1,4 @@
+import levels from './assets/levels.json';
 import './App.css'
 
 function App() {
