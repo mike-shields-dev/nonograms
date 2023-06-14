@@ -1,10 +1,12 @@
-import useToggle from '../useToggle';
+import useToggle from "../useToggle";
 
 export default function useToggleWrapper() {
-  const [state, toggleState]  = useToggle();
+  const [state, toggleState] = useToggle();
 
-  return <>
-    <button onClick={toggleState}>toggleState</button>
-    <div>{`${state}`}</div>
-  </>
+  return (
+    <>
+      <button onClick={toggleState}>toggleState</button>
+      <div>{`${state}`}</div>
+    </>
+  );
 }
