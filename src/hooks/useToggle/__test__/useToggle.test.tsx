@@ -23,9 +23,19 @@ describe("useToggleState", () => {
     await userEvent.click(toggleBtn);
 
     expect(screen.getByText("true")).toBeTruthy();
+    expect(screen.queryByText("null")).toBeFalsy();
+    expect(screen.queryByText("false")).toBeFalsy();
 
     await userEvent.click(toggleBtn);
 
-    expect(screen.getByText("false")).toBeTruthy();
+    expect(await screen.findByText("false")).toBeTruthy();
+    expect(screen.queryByText("true")).toBeFalsy();
+    expect(screen.queryByText("null")).toBeFalsy();
+
+    await userEvent.click(toggleBtn);
+
+    expect(await screen.findByText("null")).toBeTruthy();
+    expect(screen.queryByText("true")).toBeFalsy();
+    expect(screen.queryByText("false")).toBeFalsy();
   });
 });
