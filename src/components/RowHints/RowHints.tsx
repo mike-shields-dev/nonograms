@@ -6,8 +6,6 @@ interface Props {
   matrix: boolean[][];
 }
 
-type Hint = number[];
-
 export default function RowHints({ matrix }: Props) {
   const rowHints = hintsFromMatrix(matrix);
 
