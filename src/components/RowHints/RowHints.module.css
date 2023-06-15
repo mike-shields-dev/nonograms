@@ -1,3 +1,7 @@
+.row_hints {
+  box-shadow: 0px 0px 0px 1px #000;
+}
+
 .row_hint {
   display: flex;
   align-items: center;
