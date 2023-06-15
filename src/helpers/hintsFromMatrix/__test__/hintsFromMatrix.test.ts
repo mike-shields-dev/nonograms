@@ -17,12 +17,19 @@ const matrices = [
     [true, true, true, false],
     [false, true, false, false],
   ],
+  [
+    [true, false, true, true],
+    [false, true, true, false],
+    [true, true, true, false],
+    [false, false, false, false],
+  ],
 ];
 
 const hints = [
   [[1], [1]],
   [[1, 1], [3], [1]],
   [[1, 2], [2], [3], [1]],
+  [[1, 2], [2], [3], []],
 ];
 
 describe("hintsFromMatrix", () => {
