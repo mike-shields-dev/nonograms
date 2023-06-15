@@ -7,6 +7,5 @@ export default function transformMatrix(matrix: boolean[][]) {
       transformedMatrix.push([cell])
     );
   });
-  console.log({ matrix, transformedMatrix });
   return transformedMatrix;
 }
