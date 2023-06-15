@@ -13,5 +13,5 @@ export default function hintsFromMatrix(matrix: boolean[][]) {
 
       return tempHint;
     }, tempHint);
-  }).filter(subArray => subArray.length > 0);
+  });
 }
