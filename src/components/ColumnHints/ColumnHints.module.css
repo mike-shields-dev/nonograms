@@ -1,5 +1,6 @@
 .column_hints {
   display: grid;
   grid-template-columns: repeat(var(--grid-resolution), 1fr);
+  box-shadow: 0px 0px 0px 1px #000;
 }
 
