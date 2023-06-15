@@ -10,7 +10,6 @@ export default function ColumnHint({ columnHint }: Props) {
     {columnHint.map((count, countIndex) => (
       <div key={`column-hint-count${countIndex}`} className="hint-count">
         {count}
-        {countIndex < columnHint.length - 1 && ","}
       </div>
     ))}
   </div>
