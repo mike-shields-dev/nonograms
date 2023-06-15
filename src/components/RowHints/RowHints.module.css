@@ -1,0 +1,13 @@
+.row_hint {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: var(--cell-size);
+  border: 1px solid #000;
+  padding: 0 .25em;
+}
+
+.hint_count {
+  display: grid;
+  place-items: center;
+}
