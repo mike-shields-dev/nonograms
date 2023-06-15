@@ -11,10 +11,7 @@ interface Props {
 
 export default function ColumnHints({ matrix }: Props) {
   const transformedMatrix = transformMatrix(matrix);
-
   const columnHints = hintsFromMatrix(transformedMatrix);
-  
-  console.log({columnHints})
 
   return (
     <div className={css.column_hints}>
