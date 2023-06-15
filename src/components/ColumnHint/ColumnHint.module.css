@@ -1,0 +1,4 @@
+.column_hint {
+  flex-grow: 1;
+  border: 1px solid #000;
+}

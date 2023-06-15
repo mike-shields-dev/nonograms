@@ -8,6 +8,9 @@ main {
   ;
 }
 
+.column_hints_wrapper {
+  grid-area: column-hints;
+}
 
 .row_hints_wrapper {
   grid-area: row-hints;
@@ -15,11 +18,4 @@ main {
 
 .board_wrapper {
   grid-area: board;
-}
-
-.hint-count {
-  aspect-ratio: 1;
-  display: grid;
-  place-content: center;
-  width: 1rem;
 }
