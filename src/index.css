@@ -1,11 +1,12 @@
 :root {
   --cell-size: 2rem;
-  --grid-resolution: ; /* set by JS */
+  --grid-resolution: ; /* dynamic */
 }
 
 body {
   font-size: 1.5rem;
   padding: 1rem;
+  font-family: 'Tech Mono', monospace;
 }
 
 * {
