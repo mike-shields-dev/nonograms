@@ -1,32 +1,20 @@
-import useToggle from "../../hooks/useToggle/useToggle";
-
 import css from "./Cell.module.css";
 
-import { Coords, CellState } from "../../types";
-import { useEffect } from "react";
+import { Coords, CellState} from "../../types";
 
 interface Props {
   coords: Coords;
-  onStateChange: (coords: Coords, state: CellState | (() => void)) => void;
+  userMatrix: CellState[][];
+  onCellClick: (coords: Coords) => void;
 }
 
-export default function Cell({ coords, onStateChange }: Props) {
-  const [state, toggleState] = useToggle();
-
-  function onClick() {
-    typeof toggleState === "function" && toggleState();
-  }
-
-  useEffect(() => {
-    if (state !== null) {
-      onStateChange(coords, state);
-    }
-  }, [onStateChange, coords, state]);
-
+export default function Cell({ coords, onCellClick, userMatrix}: Props) {
+  const [x, y] = coords;
+  const state = userMatrix[y][x];
   return (
     <button
       value={`${state}`}
-      onClick={onClick}
+      onClick={() => onCellClick(coords)}
       className={`
         ${css.Cell} 
         ${css[`${state}`]} 

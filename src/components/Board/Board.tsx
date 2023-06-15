@@ -1,16 +1,25 @@
+import { Coords, CellState } from "../../types";
+
 import Cell from "../Cell/Cell";
 import css from "./Board.module.css";
 
 interface Props {
-  matrix: boolean[][];
+  userMatrix: CellState[][];
+  onCellClick: (coords: Coords) => void;
 }
 
-export default function Board({ matrix }: Props) {
+export default function Board({ userMatrix, onCellClick }: Props) {
   return (
     <div className={css.Board}>
-      {matrix.map((row, y) =>
-        row.map((_, x) => 
-        <Cell key={`cell-${y}${x}`} coords={[x, y]} />)
+      {userMatrix.map((row: CellState[], y) =>
+        row.map((_, x) => (
+          <Cell
+            key={`cell-${y}${x}`}
+            coords={[x, y]}
+            onCellClick={onCellClick}
+            userMatrix={userMatrix}
+          />
+        ))
       )}
     </div>
   );
