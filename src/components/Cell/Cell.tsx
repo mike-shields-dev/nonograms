@@ -1,23 +1,32 @@
-import { useEffect } from "react";
 import useToggle from "../../hooks/useToggle/useToggle";
 
 import css from "./Cell.module.css";
 
+import { Coords, CellState } from "../../types";
+import { useEffect } from "react";
+
 interface Props {
-  coords: [number, number];
+  coords: Coords;
+  onStateChange: (coords: Coords, state: CellState | (() => void)) => void;
 }
 
-export default function Cell({ coords }: Props) {
+export default function Cell({ coords, onStateChange }: Props) {
   const [state, toggleState] = useToggle();
 
+  function onClick() {
+    typeof toggleState === "function" && toggleState();
+  }
+
   useEffect(() => {
-    console.log({state, coords})
-  }, [state, coords]);
+    if (state !== null) {
+      onStateChange(coords, state);
+    }
+  }, [onStateChange, coords, state]);
 
   return (
     <button
       value={`${state}`}
-      onClick={toggleState}
+      onClick={onClick}
       className={`
         ${css.Cell} 
         ${css[`${state}`]} 
