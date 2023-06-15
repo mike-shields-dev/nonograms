@@ -1,4 +1,7 @@
 .column_hint {
   flex-grow: 1;
   border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
