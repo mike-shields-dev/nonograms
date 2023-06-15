@@ -7,3 +7,7 @@ main {
     "row-hints board"
   ;
 }
+
+.board_wrapper {
+  grid-area: board;
+}

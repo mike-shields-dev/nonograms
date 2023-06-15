@@ -21,11 +21,11 @@ const levelData: Level[] = [
 describe("Board", () => {
   it("displays the correct number of grid cells based on the level data", () => {
     
-    levelData.forEach((currentLevel) => {
-      const [firstRow] = currentLevel;
+    levelData.forEach((matrix) => {
+      const [firstRow] = matrix;
       const cellCount = firstRow.length ** 2;
 
-      render(<Board currentLevel={currentLevel} />);
+      render(<Board matrix={matrix} />);
 
       expect(screen.getAllByRole("button")).toHaveLength(cellCount);
       cleanup();

@@ -17,7 +17,9 @@ function App() {
   return (
     <>
       <main>
-        <Board currentLevel={levels[levelIndex]} />
+        <div className="board_wrapper">
+          <Board matrix={matrix} />
+        </div>
       </main>
     </>
   )
