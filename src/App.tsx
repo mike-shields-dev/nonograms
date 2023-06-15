@@ -1,12 +1,13 @@
-import { Coords } from "./types";
-import { useState, useEffect } from "react";
-import levels from "./assets/levels.json";
+import "./App.css";
 
+import { useEffect, useState } from "react";
+
+import levels from "./assets/levels.json";
 import Board from "./components/Board/Board";
 import ColumnHints from "./components/ColumnHints/ColumnHints";
 import RowHints from "./components/RowHints/RowHints";
-
-import "./App.css";
+import toggleState from "./helpers/toggleState/toggleState";
+import { Coords } from "./types";
 
 function App() {
   const levelIndex = 1;
@@ -27,13 +28,7 @@ function App() {
     const tempUserMatrix = userMatrix.map((row) => [...row]);
     const cellState = tempUserMatrix[y][x];
 
-    if (cellState === null) {
-      tempUserMatrix[y][x] = true;
-    } else if (cellState === true) {
-      tempUserMatrix[y][x] = false;
-    } else if (cellState === false) {
-      tempUserMatrix[y][x] = null;
-    }
+    tempUserMatrix[y][x] = toggleState(cellState);
 
     setUserMatrix(tempUserMatrix);
   }
