@@ -1,13 +1,13 @@
-import "./App.css";
-
+import { Coords } from "./types";
 import { useEffect, useState } from "react";
-
 import levels from "./assets/levels.json";
+import toggleState from "./helpers/toggleState/toggleState";
+
 import Board from "./components/Board/Board";
 import ColumnHints from "./components/ColumnHints/ColumnHints";
 import RowHints from "./components/RowHints/RowHints";
-import toggleState from "./helpers/toggleState/toggleState";
-import { Coords } from "./types";
+
+import "./App.css";
 
 function App() {
   const levelIndex = 1;
