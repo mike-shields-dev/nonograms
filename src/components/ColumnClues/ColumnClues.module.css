@@ -5,4 +5,5 @@
   flex-direction: column;
   justify-content: end;
   align-items: center;
+  padding: .125em;
 }
