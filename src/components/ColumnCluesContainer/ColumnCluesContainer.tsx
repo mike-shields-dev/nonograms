@@ -15,7 +15,7 @@ export default function ColumnCluesContainer({ matrix }: Props) {
   return (
     <div className={css.column_clues}>
       {columnCluesArr.map((columnClues, i) => (
-        <ColumnClues key={`column-clues${i}`} columnClues={columnClues} />
+        <ColumnClues key={`column_clues${i}`} columnClues={columnClues} />
       ))}
     </div>
   );

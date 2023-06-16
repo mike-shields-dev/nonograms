@@ -5,7 +5,7 @@ import toggleState from "./helpers/toggleState/toggleState";
 
 import Board from "./components/Board/Board";
 import ColumnCluesContainer from "./components/ColumnCluesContainer/ColumnCluesContainer";
-import RowHints from "./components/RowHints/RowHints";
+import RowCluesContainer from "./components/RowCluesContainer/RowCluesContainer";
 
 import "./App.css";
 
@@ -35,11 +35,11 @@ function App() {
 
   return (
     <main>
-      <div className="column_clues_positioner">
+      <div className="column_clues_container_positioner">
         <ColumnCluesContainer matrix={matrix} />
       </div>
-      <div className="row_hints_wrapper">
-        <RowHints matrix={matrix} />
+      <div className="row_clues_container_positioner">
+        <RowCluesContainer matrix={matrix} />
       </div>
       <div className="board_wrapper">
         {userMatrix && (

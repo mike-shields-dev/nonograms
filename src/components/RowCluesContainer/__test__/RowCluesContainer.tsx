@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import RowHints from "../RowHints";
+import RowCluesContainer from "../RowCluesContainer";
 
 const matrices = [
   [
@@ -11,23 +11,23 @@ const matrices = [
     [true, false, true],
     [false, true, false],
     [false, false, false],
-  ], 
+  ],
   [
     [true, false, true, false],
     [true, true, false, false],
     [true, true, true, true],
     [false, false, false, false],
-  ]
+  ],
 ];
 
-describe("RowHints", () => {
-  it("renders an element for each matrix row", () => {
+describe("RowCluesContainer", () => {
+  it("renders an element for each row the provided matrix prop", () => {
     matrices.forEach((matrix) => {
-      const { container } = render(<RowHints matrix={matrix} />);
-      const RowHintsEl = container.firstChild;
+      const { container } = render(<RowCluesContainer matrix={matrix} />);
+      const rowCluesContainer = container.firstChild;
 
-      if(RowHintsEl) {
-        expect(RowHintsEl.childNodes).toHaveLength(matrix.length);
+      if (rowCluesContainer) {
+        expect(rowCluesContainer.childNodes).toHaveLength(matrix.length);
       }
     });
   });

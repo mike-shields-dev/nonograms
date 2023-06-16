@@ -4,17 +4,17 @@ import ColumnClues from "../ColumnClues";
 
 describe("ColumnClues", () => {
   it("renders each value in the provided columnClues prop array", () => {
-    const clues = [1, 2, 3, 4, 5, 6];
-    const { container } = render(<ColumnClues columnClues={clues} />);
+    const columnCluesProp = [1, 2, 3, 4, 5, 6];
+    const { container } = render(<ColumnClues columnClues={columnCluesProp} />);
     
     const columnClues = container.firstChild;
 
-    expect(columnClues?.childNodes).toHaveLength(clues.length);
+    expect(columnClues?.childNodes).toHaveLength(columnCluesProp.length);
 
-    clues.forEach((clue) => {
-      const clueEl = screen.getByText(clue);
+    columnCluesProp.forEach((columnClue) => {
+      const foundRowClue = screen.getByText(columnClue);
 
-      expect(clueEl).toBeTruthy();
+      expect(foundRowClue).toBeTruthy();
     });
   });
 });

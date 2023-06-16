@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import hintsFromMatrix from "../cluesArrayFromMatrix";
+import cluesArrayFromMatrix from "../cluesArrayFromMatrix";
 
 const matrices = [
   [
@@ -32,10 +32,10 @@ const hints = [
   [[1, 2], [2], [3], []],
 ];
 
-describe("hintsFromMatrix", () => {
+describe("cluesArrayFromMatrix", () => {
   it("returns a number representing each group of consecutive true values in a matrix row", () => {
     matrices.forEach((matrix, i) => {
-      expect(hintsFromMatrix(matrix)).toStrictEqual(hints[i]);
+      expect(cluesArrayFromMatrix(matrix)).toStrictEqual(hints[i]);
     });
   });
 });

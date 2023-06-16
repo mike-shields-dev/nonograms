@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import switchState from "../toggleState";
+import toggleState from "../toggleState";
 
-describe('switchState', () => {
+describe('toggleState', () => {
   it('returns the next when passed the current state', () => {
-    expect(switchState(null)).toBe(true);
-    expect(switchState(true)).toBe(false);
-    expect(switchState(false)).toBe(null);
+    expect(toggleState(null)).toBe(true);
+    expect(toggleState(true)).toBe(false);
+    expect(toggleState(false)).toBe(null);
   });
 });

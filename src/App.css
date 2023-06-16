@@ -3,17 +3,17 @@ main {
   grid-template-columns: min-content min-content;
   grid-template-rows: min-content min-content;
   grid-template-areas:
-    ". column-clues"
-    "row-hints board"
+    ". column_clues"
+    "row-clues board"
   ;
 }
 
-.column_clues_positioner {
-  grid-area: column-clues;
+.column_clues_container_positioner {
+  grid-area: column_clues;
 }
 
-.row_hints_wrapper {
-  grid-area: row-hints;
+.row_clues_container_positioner {
+  grid-area: row-clues;
 }
 
 .board_wrapper {
