@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import hintsFromMatrix from "../hintsFromMatrix";
+import hintsFromMatrix from "../cluesArrayFromMatrix";
 
 const matrices = [
   [

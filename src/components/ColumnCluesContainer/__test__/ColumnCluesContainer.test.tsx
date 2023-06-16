@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
-import ColumnHints from "../ColumnHints";
+import ColumnCluesContainer from "../ColumnCluesContainer";
 
 const matrix = [
   [true, false, true],
@@ -8,20 +8,14 @@ const matrix = [
   [true, true, true],
 ]
 
-describe("ColumnHints", () => {
-  let parentElement: ChildNode | null;
-
-  beforeEach(() => {
-    const { container } = render(<ColumnHints matrix={matrix} />);
-    parentElement = container.firstChild;
-  });
-
-  afterEach(cleanup);
-
+describe("ColumnCluesContainer", () => {
   it('renders a column for each column of the board', () => {
+    const { container } = render(<ColumnCluesContainer matrix={matrix} />);
+    const columnCluesContainer = container.firstChild;
+
     const gridResolution = matrix.length;
 
-    const columns = parentElement?.childNodes;
+    const columns = columnCluesContainer?.childNodes;
     
     expect(columns).toHaveLength(gridResolution);
   });

@@ -8,7 +8,7 @@ export default function RowHint({ rowHint }: Props) {
   return (
     <div className={css.row_hint}>
       {rowHint.map((count, countIndex) => (
-        <div key={`row-hint-count${countIndex}`} className="hint-count">
+        <div key={`row-column_clue${countIndex}`} className="column_clue">
           {count}
           {countIndex < rowHint.length - 1 && ","}
         </div>

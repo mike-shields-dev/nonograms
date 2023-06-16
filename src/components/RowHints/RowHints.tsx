@@ -1,4 +1,4 @@
-import hintsFromMatrix from "../../helpers/hintsFromMatrix/hintsFromMatrix";
+import hintsFromMatrix from "../../helpers/cluesArrayFromMatrix/cluesArrayFromMatrix";
 import RowHint from "../RowHint/RowHint";
 import css from "./RowHints.module.css";
 

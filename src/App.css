@@ -3,13 +3,13 @@ main {
   grid-template-columns: min-content min-content;
   grid-template-rows: min-content min-content;
   grid-template-areas:
-    ". column-hints"
+    ". column-clues"
     "row-hints board"
   ;
 }
 
-.column_hints_wrapper {
-  grid-area: column-hints;
+.column_clues_positioner {
+  grid-area: column-clues;
 }
 
 .row_hints_wrapper {

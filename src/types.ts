@@ -6,4 +6,8 @@ type MatrixRow = CellState[];
 
 type Matrix = MatrixRow[];
 
-export type { Coords, CellState, Matrix, MatrixRow };
+type Clue = number;
+
+type Clues = Clue[];
+
+export type { Coords, CellState, Matrix, MatrixRow, Clue, Clues };

@@ -4,7 +4,7 @@ import levels from "./assets/levels.json";
 import toggleState from "./helpers/toggleState/toggleState";
 
 import Board from "./components/Board/Board";
-import ColumnHints from "./components/ColumnHints/ColumnHints";
+import ColumnCluesContainer from "./components/ColumnCluesContainer/ColumnCluesContainer";
 import RowHints from "./components/RowHints/RowHints";
 
 import "./App.css";
@@ -35,8 +35,8 @@ function App() {
 
   return (
     <main>
-      <div className="column_hints_wrapper">
-        <ColumnHints matrix={matrix} />
+      <div className="column_clues_positioner">
+        <ColumnCluesContainer matrix={matrix} />
       </div>
       <div className="row_hints_wrapper">
         <RowHints matrix={matrix} />

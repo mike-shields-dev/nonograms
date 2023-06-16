@@ -1,7 +1,12 @@
-export default function transformMatrix(matrix: boolean[][]) {
-  const transformedMatrix: boolean[][] = [];
+import {
+  Matrix,
+  MatrixRow,
+} from '../../types';
 
-  matrix.forEach((row) => {
+export default function transformMatrix(matrix: Matrix) {
+  const transformedMatrix: Matrix = [];
+
+  matrix.forEach((row: MatrixRow) => {
     row.forEach((cell, x) =>
       transformedMatrix[x]?.push(cell) ||
       transformedMatrix.push([cell])
