@@ -4,36 +4,36 @@ import Header from "../Header";
 
 const testCases = [
   {
-    lives: 0,
+    level: 0,
     moves: 1,
   },
   {
-    lives: 1,
+    level: 1,
     moves: 0,
   },
   {
-    lives: 2,
+    level: 2,
     moves: 1,
   },
   {
-    lives: 3,
+    level: 3,
     moves: 2,
   },
 ];
 
 describe("Header", () => {
-  it("renders the players lives", () => {
-    testCases.forEach(({ lives, moves }) => {
-      render(<Header level={lives} moves={moves} />);
+  it("renders the game level", () => {
+    testCases.forEach(({ level, moves }) => {
+      render(<Header level={level} moves={moves} />);
 
-      expect(screen.getByText(`Lives: ${lives}`)).toBeTruthy();
+      expect(screen.getByText(`Level: ${level}`)).toBeTruthy();
       cleanup();
     });
   });
 
   it("renders the players moves", () => {
-    testCases.forEach(({ lives, moves }) => {
-      render(<Header level={lives} moves={moves} />);
+    testCases.forEach(({ level, moves }) => {
+      render(<Header level={level} moves={moves} />);
 
       expect(screen.getByText(`Moves: ${moves}`)).toBeTruthy();
       cleanup();
