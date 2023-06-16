@@ -12,15 +12,17 @@ import "./App.css";
 import calculateCompleteness from "./helpers/calculateCompleteness/calculateCompleteness";
 
 function App() {
-  const [level, setLevel] = useState(0);
   const [moves, setMoves] = useState(0);
+  const [level, setLevel] = useState(0);
+  
   const matrix = levels[level];
   const gridResolution = matrix.length;
+  
   const [userMatrix, setUserMatrix] = useState(
     Array(gridResolution).fill(Array(gridResolution).fill(null))
   );
 
-  const completeness = calculateCompleteness(matrix, userMatrix)
+  const completeness = calculateCompleteness(matrix, userMatrix);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -46,7 +48,7 @@ function App() {
 
   return (
     <>
-      <Header level={level} moves={moves} />
+      <Header level={level} moves={moves} completeness={completeness} />
       <main>
         <div className="column_clues_container_positioner">
           <ColumnCluesContainer matrix={matrix} />
