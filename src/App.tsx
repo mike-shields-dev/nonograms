@@ -24,7 +24,7 @@ function App() {
   }, [gridResolution]);
 
   function onCellClick(coords: Coords): void {
-    const { x, y }: Coords = coords;
+    const { x, y } = coords;
     const tempUserMatrix = userMatrix.map((row) => [...row]);
     const cellState = tempUserMatrix[y][x];
 
@@ -42,9 +42,7 @@ function App() {
         <RowCluesContainer matrix={matrix} />
       </div>
       <div className="board_wrapper">
-        {userMatrix && (
-          <Board userMatrix={userMatrix} onCellClick={onCellClick} />
-        )}
+        <Board userMatrix={userMatrix} onCellClick={onCellClick} />
       </div>
     </main>
   );
