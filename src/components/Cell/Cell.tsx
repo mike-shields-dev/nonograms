@@ -4,13 +4,11 @@ import { Coords, CellState} from "../../types";
 
 interface Props {
   coords: Coords;
-  userMatrix: CellState[][];
+  state: CellState;
   onCellClick: (coords: Coords) => void;
 }
 
-export default function Cell({ coords, onCellClick, userMatrix}: Props) {
-  const [x, y] = coords;
-  const state = userMatrix[y][x];
+export default function Cell({ coords, state, onCellClick}: Props) {
   return (
     <button
       value={`${state}`}

@@ -1,47 +1,67 @@
 import { Coords } from "../../../types";
-import { it, expect, describe, beforeEach, vi } from "vitest";
+import { it, expect, describe, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Cell from "../Cell";
 
 const onCellClick = vi.fn();
+
 const coords: Coords = { x: 0, y: 0 };
 
 describe("Cell", () => {
-  beforeEach(() => {
+  afterEach(() => {
     cleanup();
+    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
-  it("renders a button with initial state of null", () => {
-    render(<Cell coords={coords} onCellClick={onCellClick} userMatrix={testMatrix}/>);
+  describe("renders a button with state equal to:  ", () => {
+    it("- null when state prop is null", () => {
+      render(<Cell coords={coords} state={null} onCellClick={onCellClick} />);
+      const cell = screen.getByRole("button");
 
-    const cell = screen.getByRole("button");
+      expect(cell.getAttribute("value")).toBe("null");
+    });
 
-    expect(cell.getAttribute("value")).toBe("null");
+    it("- true when state prop is true", () => {
+      render(<Cell coords={coords} state={true} onCellClick={onCellClick} />);
+      const cell = screen.getByRole("button");
+
+      expect(cell.getAttribute("value")).toBe("true");
+    });
+
+    it("- false when state prop is false", () => {
+      render(<Cell coords={coords} state={false} onCellClick={onCellClick} />);
+      const cell = screen.getByRole("button");
+
+      expect(cell.getAttribute("value")).toBe("false");
+    });
   });
 
-  it("invokes onCellClick when clicked and state is either true or false, passing the correct arguments", async () => {
-    render(<Cell coords={coords} onCellClick={onCellClick} userMatrix={testMatrix}/>);
-    const btnEl = screen.getByRole("button");
+  describe("invokes onCellClick passing the correct coords", () => {
+    it("test 1: {x: 0, y: 1}", async () => {
+      render(
+        <Cell coords={{ x: 0, y: 1 }} state={true} onCellClick={onCellClick} />
+      );
+      const btnEl = screen.getByRole("button");
 
-    expect(onCellClick).not.toHaveBeenCalled();
-    
-    if (btnEl) {
-      await userEvent.click(btnEl);
+      btnEl && (await userEvent.click(btnEl));
 
       expect(onCellClick).toHaveBeenCalledTimes(1);
-      expect(onCellClick).toHaveBeenCalledWith(coords);
+      expect(onCellClick).toHaveBeenCalledWith({ x: 0, y: 1 });
+    });
 
-      await userEvent.click(btnEl);
+    it("test 2: {x: 1, y: 0}", async () => {
+      render(
+        <Cell coords={{ x: 1, y: 0 }} state={true} onCellClick={onCellClick} />
+      );
+      const btnEl = screen.getByRole("button");
 
-      expect(onCellClick).toHaveBeenCalledTimes(2);
-      expect(onCellClick).toHaveBeenCalledWith(coords);
+      btnEl && (await userEvent.click(btnEl));
 
-      await userEvent.click(btnEl);
-
-      expect(onCellClick).toHaveBeenCalledTimes(3);
-      expect(onCellClick).toHaveBeenCalledWith(coords);
-    }
+      expect(onCellClick).toHaveBeenCalledTimes(1);
+      expect(onCellClick).toHaveBeenCalledWith({ x: 1, y: 0 });
+    });
   });
 });
