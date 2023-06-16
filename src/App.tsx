@@ -40,17 +40,20 @@ function App() {
   }
 
   return (
-    <main>
-      <div className="column_clues_container_positioner">
-        <ColumnCluesContainer matrix={matrix} />
-      </div>
-      <div className="row_clues_container_positioner">
-        <RowCluesContainer matrix={matrix} />
-      </div>
-      <div className="board_wrapper">
-        <Board userMatrix={userMatrix} onCellClick={onCellClick} />
-      </div>
-    </main>
+    <>
+      <Header level={level} moves={moves} />
+      <main>
+        <div className="column_clues_container_positioner">
+          <ColumnCluesContainer matrix={matrix} />
+        </div>
+        <div className="row_clues_container_positioner">
+          <RowCluesContainer matrix={matrix} />
+        </div>
+        <div className="board_wrapper">
+          <Board userMatrix={userMatrix} onCellClick={onCellClick} />
+        </div>
+      </main>
+    </>
   );
 }
 
