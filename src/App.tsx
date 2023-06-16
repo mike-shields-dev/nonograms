@@ -11,6 +11,7 @@ import "./App.css";
 
 function App() {
   const [level, setLevel] = useState(0);
+  const [moves, setMoves] = useState(0);
   const matrix = levels[level];
   const gridResolution = matrix.length;
   const [userMatrix, setUserMatrix] = useState(
@@ -31,6 +32,9 @@ function App() {
     tempUserMatrix[y][x] = toggleState(cellState);
 
     setUserMatrix(tempUserMatrix);
+    setMoves(moves + 1);
+  }
+
   if(JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
     setLevel(level + 1)
   }
