@@ -4,7 +4,7 @@
 }
 
 .null {
-  background: #b9b9b9;
+  background: inherit;
 }
 
 .true {
@@ -12,5 +12,5 @@
 }
 
 .false {
-  background: #fff;
+  background: #aaa;
 }
