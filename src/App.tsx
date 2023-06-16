@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import levels from "./assets/levels.json";
 import toggleState from "./helpers/toggleState/toggleState";
 
+import Header from "./components/Header/Header";
 import Board from "./components/Board/Board";
 import ColumnCluesContainer from "./components/ColumnCluesContainer/ColumnCluesContainer";
 import RowCluesContainer from "./components/RowCluesContainer/RowCluesContainer";
@@ -37,6 +38,7 @@ function App() {
 
   if(JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
     setLevel(level + 1)
+    setMoves(0);
   }
 
   return (
