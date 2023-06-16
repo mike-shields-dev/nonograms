@@ -24,7 +24,7 @@ function App() {
   }, [gridResolution]);
 
   function onCellClick(coords: Coords): void {
-    const [x, y] = coords;
+    const { x, y }: Coords = coords;
     const tempUserMatrix = userMatrix.map((row) => [...row]);
     const cellState = tempUserMatrix[y][x];
 

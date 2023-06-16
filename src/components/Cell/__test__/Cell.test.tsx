@@ -6,12 +6,7 @@ import userEvent from "@testing-library/user-event";
 import Cell from "../Cell";
 
 const onCellClick = vi.fn();
-const coords: Coords = [0, 0];
-const testMatrix = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-]
+const coords: Coords = { x: 0, y: 0 };
 
 describe("Cell", () => {
   beforeEach(() => {

@@ -14,6 +14,7 @@ export default function Board({ userMatrix, onCellClick }: Props) {
       {userMatrix.map((row: CellState[], y) =>
         row.map((_, x) => (
           <Cell
+            coords={{x, y}}
             key={`cell-${y}${x}`}
             coords={[x, y]}
             onCellClick={onCellClick}
