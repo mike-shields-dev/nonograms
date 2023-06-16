@@ -28,7 +28,7 @@ describe("Board", () => {
       render(<Board userMatrix={userMatrix} onCellClick={onCellClick} />);
 
       expect(screen.getAllByRole("button")).toHaveLength(cellCount);
-      
+
       cleanup();
     });
   });

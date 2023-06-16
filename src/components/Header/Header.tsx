@@ -1,4 +1,4 @@
-import css from './Header.module.css'
+import css from "./Header.module.css";
 
 interface Props {
   level: number;
@@ -13,5 +13,5 @@ export default function Header({ level, moves, completeness }: Props) {
       <span>Moves: {moves}</span>
       <span>%: {completeness}</span>
     </header>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-type Coords = { x: number, y: number };
+type Coords = { x: number; y: number };
 
 type CellState = boolean | null;
 

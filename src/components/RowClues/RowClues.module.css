@@ -4,5 +4,5 @@
   justify-content: end;
   height: var(--cell-size);
   border: 1px solid #000;
-  padding: .5em;
+  padding: 0.5em;
 }

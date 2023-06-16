@@ -8,13 +8,13 @@ interface Props {
   onCellClick: (coords: Coords) => void;
 }
 
-export default function Board({ userMatrix, onCellClick }: Props) {  
+export default function Board({ userMatrix, onCellClick }: Props) {
   return (
     <div className={css.Board}>
       {userMatrix.map((row: MatrixRow, y) =>
         row.map((state: CellState, x) => (
           <Cell
-            coords={{x, y}}
+            coords={{ x, y }}
             key={`cell-${y}${x}`}
             onCellClick={onCellClick}
             state={state}

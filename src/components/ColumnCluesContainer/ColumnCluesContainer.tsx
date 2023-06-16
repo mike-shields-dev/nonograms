@@ -1,8 +1,8 @@
-import cluesArrFromMatrix from '../../helpers/cluesArrayFromMatrix/cluesArrayFromMatrix';
-import transformMatrix from '../../helpers/transformMatrix/transformMatrix';
-import { Matrix } from '../../types';
-import ColumnClues from '../ColumnClues/ColumnClues';
-import css from './ColumnCluesContainer.module.css';
+import cluesArrFromMatrix from "../../helpers/cluesArrayFromMatrix/cluesArrayFromMatrix";
+import transformMatrix from "../../helpers/transformMatrix/transformMatrix";
+import { Matrix } from "../../types";
+import ColumnClues from "../ColumnClues/ColumnClues";
+import css from "./ColumnCluesContainer.module.css";
 
 interface Props {
   matrix: Matrix;

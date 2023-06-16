@@ -6,17 +6,17 @@ const matrix = [
   [true, false, true],
   [true, false, true],
   [true, true, true],
-]
+];
 
 describe("ColumnCluesContainer", () => {
-  it('renders a column for each column of the board', () => {
+  it("renders a column for each column of the board", () => {
     const { container } = render(<ColumnCluesContainer matrix={matrix} />);
     const columnCluesContainer = container.firstChild;
 
     const gridResolution = matrix.length;
 
     const columns = columnCluesContainer?.childNodes;
-    
+
     expect(columns).toHaveLength(gridResolution);
   });
 });

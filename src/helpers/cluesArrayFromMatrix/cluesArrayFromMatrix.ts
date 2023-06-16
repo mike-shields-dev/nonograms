@@ -12,7 +12,6 @@ export default function cluesFromMatrix(matrix: Matrix) {
       }
 
       return tempClues;
-      
     }, tempClues);
   });
 }

@@ -1,5 +1,5 @@
-import { Clues } from '../../types';
-import css from './ColumnClues.module.css';
+import { Clues } from "../../types";
+import css from "./ColumnClues.module.css";
 
 interface Props {
   columnClues: Clues;

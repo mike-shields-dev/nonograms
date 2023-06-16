@@ -44,7 +44,9 @@ const testCases = [
 describe("cluesArrayFromMatrix", () => {
   it("returns a number for each group of consecutive true values in a matrix row", () => {
     testCases.forEach((testCase) => {
-      expect(cluesArrayFromMatrix(testCase.input)).toStrictEqual(testCase.expected);
+      expect(cluesArrayFromMatrix(testCase.input)).toStrictEqual(
+        testCase.expected
+      );
     });
   });
 });

@@ -14,10 +14,10 @@ import calculateCompleteness from "./helpers/calculateCompleteness/calculateComp
 function App() {
   const [moves, setMoves] = useState(0);
   const [level, setLevel] = useState(0);
-  
+
   const matrix = levels[level];
   const gridResolution = matrix.length;
-  
+
   const [userMatrix, setUserMatrix] = useState(
     Array(gridResolution).fill(Array(gridResolution).fill(null))
   );
@@ -41,8 +41,8 @@ function App() {
     setMoves(moves + 1);
   }
 
-  if(JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
-    setLevel(level + 1)
+  if (JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
+    setLevel(level + 1);
     setMoves(0);
   }
 

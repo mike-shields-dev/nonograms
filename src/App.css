@@ -4,8 +4,7 @@ main {
   grid-template-rows: min-content min-content;
   grid-template-areas:
     ". column_clues"
-    "row-clues board"
-  ;
+    "row-clues board";
 }
 
 .column_clues_container_positioner {
