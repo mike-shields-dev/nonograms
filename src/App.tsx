@@ -9,6 +9,7 @@ import ColumnCluesContainer from "./components/ColumnCluesContainer/ColumnCluesC
 import RowCluesContainer from "./components/RowCluesContainer/RowCluesContainer";
 
 import "./App.css";
+import calculateCompleteness from "./helpers/calculateCompleteness/calculateCompleteness";
 
 function App() {
   const [level, setLevel] = useState(0);
@@ -18,6 +19,8 @@ function App() {
   const [userMatrix, setUserMatrix] = useState(
     Array(gridResolution).fill(Array(gridResolution).fill(null))
   );
+
+  const completeness = calculateCompleteness(matrix, userMatrix)
 
   useEffect(() => {
     const root = document.documentElement;
