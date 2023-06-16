@@ -10,8 +10,8 @@ import RowCluesContainer from "./components/RowCluesContainer/RowCluesContainer"
 import "./App.css";
 
 function App() {
-  const levelIndex = 1;
-  const matrix = levels[levelIndex];
+  const [level, setLevel] = useState(0);
+  const matrix = levels[level];
   const gridResolution = matrix.length;
   const [userMatrix, setUserMatrix] = useState(
     Array(gridResolution).fill(Array(gridResolution).fill(null))
@@ -31,6 +31,8 @@ function App() {
     tempUserMatrix[y][x] = toggleState(cellState);
 
     setUserMatrix(tempUserMatrix);
+  if(JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
+    setLevel(level + 1)
   }
 
   return (
