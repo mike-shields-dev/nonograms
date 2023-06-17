@@ -3,24 +3,21 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import levels from "./assets/levels.json";
-
 import {
   Board,
   ColumnCluesContainer,
   Header,
-  RowCluesContainer,
   Portal,
+  RowCluesContainer,
   TimeDisplay,
 } from "./components";
-
 import {
   calculateCompleteness,
-  initialUserMatrix,
-  toggleState,
-  setCSSGridResolution,
   getTargetMoves,
+  initialUserMatrix,
+  setCSSGridResolution,
+  toggleState,
 } from "./helpers";
-
 import { Coords } from "./types";
 
 function App() {
@@ -85,10 +82,10 @@ function App() {
         completed={calculateCompleteness(levelMatrix, userMatrix)}
       />
       <main>
-        <div className="column_clues_container_positioner">
+        <div className="column_clues_container_gridarea">
           <ColumnCluesContainer levelMatrix={levelMatrix} />
         </div>
-        <div className="row_clues_container_positioner">
+        <div className="row_clues_container_gridarea">
           <RowCluesContainer levelMatrix={levelMatrix} />
         </div>
         <div className="board_wrapper">

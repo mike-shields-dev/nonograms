@@ -13,7 +13,7 @@ export default function ColumnCluesContainer({ levelMatrix: matrix }: Props) {
   const columnCluesArr = cluesArrayFromMatrix(transformedMatrix);
 
   return (
-    <div className={css.column_clues}>
+    <div className={css.column_clues_container}>
       {columnCluesArr.map((columnClues, i) => (
         <ColumnClues key={`column_clues${i}`} columnClues={columnClues} />
       ))}

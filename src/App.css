@@ -7,11 +7,11 @@ main {
     "row-clues board";
 }
 
-.column_clues_container_positioner {
+.column_clues_container_gridarea {
   grid-area: column_clues;
 }
 
-.row_clues_container_positioner {
+.row_clues_container_gridarea {
   grid-area: row-clues;
 }
 

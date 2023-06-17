@@ -1,9 +1,6 @@
-import { Matrix, Clues } from "../../types";
-
-import { cluesArrayFromMatrix } from "../../helpers/";
-
 import { RowClues } from "../../components";
-
+import { cluesArrayFromMatrix } from "../../helpers/";
+import { Clues, Matrix } from "../../types";
 import css from "./RowCluesContainer.module.css";
 
 interface Props {
@@ -14,9 +11,9 @@ export default function RowCluesContainer({ levelMatrix: matrix }: Props) {
   const rowCluesArr = cluesArrayFromMatrix(matrix);
 
   return (
-    <div className={css.row_hints}>
+    <div className={css.row_clues_container}>
       {rowCluesArr.map((rowClues: Clues, i) => (
-        <RowClues key={`row-hint${i}`} rowClues={rowClues} />
+        <RowClues key={`row-clues${i}`} rowClues={rowClues} />
       ))}
     </div>
   );

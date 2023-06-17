@@ -7,9 +7,9 @@ interface Props {
 
 export default function RowClues({ rowClues }: Props) {
   return (
-    <div className={css.row_hint}>
+    <div className={css.row_clues}>
       {rowClues.map((rowClue: Clue, i) => (
-        <div key={`row-clue${i}`} className="row_clue">
+        <div key={`row-clue${i}`} className="row_clues">
           {rowClue}
           {i < rowClues.length - 1 && ","}
         </div>
