@@ -70,7 +70,6 @@ function App() {
       <Header
         level={level}
         moves={levelMoves}
-        targetMoves={getTargetMoves(levelMatrix)}
         completeness={calculateCompleteness(levelMatrix, userMatrix)}
       />
       <main>
