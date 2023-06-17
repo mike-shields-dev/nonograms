@@ -67,12 +67,10 @@ function App() {
         <Portal>
           <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
           <p>Your Moves: {levelMoves}</p>
-          {elapsedTimeMs && (
-            <p>
-              Time:
-              <TimeDisplay durationMs={elapsedTimeMs} />
-            </p>
-          )}
+          <p>
+            Time:
+            <TimeDisplay durationMs={elapsedTimeMs} />
+          </p>
         </Portal>
       )}
       <Header

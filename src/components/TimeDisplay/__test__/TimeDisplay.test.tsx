@@ -3,6 +3,13 @@ import { cleanup, render, screen } from "@testing-library/react";
 import TimeDisplay from "../TimeDisplay";
 
 describe("TimeDisplay", () => {
+  it("should not display anything if durationMs prop is not provided", () => {
+    const { container } = render(<TimeDisplay />);
+    const timeDisplayElement = container.firstChild;
+
+    expect(timeDisplayElement).toBeNull();
+  });
+
   it("should display a given duration of time in ms in the format HH:MM:SS:ms", () => {
     milliSecondsTestCases.forEach(({ durationMs, expected }) => {
       render(<TimeDisplay durationMs={durationMs} />);

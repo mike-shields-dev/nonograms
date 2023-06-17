@@ -1,8 +1,10 @@
 interface Props {
-  durationMs: number;
+  durationMs?: number;
 }
 
 export default function TimeDisplay({ durationMs }: Props) {
+  if (!durationMs && durationMs !== 0) return null;
+
   const HH = Math.floor((durationMs / 1000 / 3600) % 24);
   const MM = Math.floor((durationMs / 1000 / 60) % 60);
   const SS = Math.floor((durationMs / 1000) % 60);
