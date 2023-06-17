@@ -76,7 +76,7 @@ function App() {
       <Header
         level={level}
         moves={levelMoves}
-        completeness={calculateCompleteness(levelMatrix, userMatrix)}
+        completed={calculateCompleteness(levelMatrix, userMatrix)}
       />
       <main>
         <div className="column_clues_container_positioner">
