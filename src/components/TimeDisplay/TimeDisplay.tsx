@@ -8,7 +8,7 @@ export default function TimeDisplay({ durationMs }: Props) {
   const HH = Math.floor((durationMs / 1000 / 3600) % 24);
   const MM = Math.floor((durationMs / 1000 / 60) % 60);
   const SS = Math.floor((durationMs / 1000) % 60);
-  const ms = Math.floor((durationMs % 1000) / 10);
+  const ms = Math.floor(durationMs % 1000);
 
   const units = ["h", "m", "s", "ms"];
 
@@ -17,7 +17,7 @@ export default function TimeDisplay({ durationMs }: Props) {
       values
         .toString()
         .concat(units[i])
-        .padStart(units[i] !== "ms" ? 3 : 4, "0")
+        .padStart(units[i] !== "ms" ? 3 : 5, "0")
     )
     .join(":");
 
