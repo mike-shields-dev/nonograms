@@ -21,7 +21,8 @@ import {
 import { Coords } from "./types";
 
 function App() {
-  const [moves, setMoves] = useState(0);
+  const [levelMoves, setLevelMoves] = useState(0);
+  const [totalMoves, setTotalMoves] = useState(0);
   const [level, setLevel] = useState(0);
 
   const levelMatrix = levels[level];
@@ -46,7 +47,7 @@ function App() {
     tempUserMatrix[y][x] = toggleState(cellState);
 
     setUserMatrix(tempUserMatrix);
-    setMoves(moves + 1);
+    setLevelMoves(levelMoves + 1);
   }
 
   useEffect(() => {
@@ -55,17 +56,18 @@ function App() {
     if (JSON.stringify(userMatrix) === JSON.stringify(levelMatrix)) {
       timer = setTimeout(() => {
         setLevel(level + 1);
-        setMoves(0);
+        setTotalMoves(levelMoves);
+        setLevelMoves(0);
       }, 1000);
     }
     return () => clearTimeout(timer);
-  }, [userMatrix, levelMatrix, level]);
+  }, [userMatrix, levelMatrix, level, levelMoves]);
 
   return (
     <>
       <Header
         level={level}
-        moves={moves}
+        moves={levelMoves}
         completeness={calculateCompleteness(levelMatrix, userMatrix)}
       />
       <main>
