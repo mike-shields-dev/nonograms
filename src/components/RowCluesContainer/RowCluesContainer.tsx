@@ -1,16 +1,16 @@
 import { Matrix, Clues } from "../../types";
 
-import cluesArrayFromMatrix from "../../helpers/cluesArrayFromMatrix/cluesArrayFromMatrix";
+import { cluesArrayFromMatrix } from "../../helpers/";
 
-import RowClues from "../RowClues/RowClues";
+import { RowClues } from "../../components";
 
 import css from "./RowCluesContainer.module.css";
 
 interface Props {
-  matrix: Matrix;
+  levelMatrix: Matrix;
 }
 
-export default function RowCluesContainer({ matrix }: Props) {
+export default function RowCluesContainer({ levelMatrix: matrix }: Props) {
   const rowCluesArr = cluesArrayFromMatrix(matrix);
 
   return (

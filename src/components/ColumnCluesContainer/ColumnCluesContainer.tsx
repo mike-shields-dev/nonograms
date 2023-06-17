@@ -1,16 +1,16 @@
-import cluesArrFromMatrix from "../../helpers/cluesArrayFromMatrix/cluesArrayFromMatrix";
-import transformMatrix from "../../helpers/transformMatrix/transformMatrix";
+import { cluesArrayFromMatrix, transformMatrix } from "../../helpers";
+import "../../helpers/transformMatrix/transformMatrix";
 import { Matrix } from "../../types";
-import ColumnClues from "../ColumnClues/ColumnClues";
+import { ColumnClues } from "../../components";
 import css from "./ColumnCluesContainer.module.css";
 
 interface Props {
-  matrix: Matrix;
+  levelMatrix: Matrix;
 }
 
-export default function ColumnCluesContainer({ matrix }: Props) {
+export default function ColumnCluesContainer({ levelMatrix: matrix }: Props) {
   const transformedMatrix = transformMatrix(matrix);
-  const columnCluesArr = cluesArrFromMatrix(transformedMatrix);
+  const columnCluesArr = cluesArrayFromMatrix(transformedMatrix);
 
   return (
     <div className={css.column_clues}>

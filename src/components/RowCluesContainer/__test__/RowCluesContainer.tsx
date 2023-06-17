@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import RowCluesContainer from "../RowCluesContainer";
+import { RowCluesContainer } from "../../../components";
 
 const matrices = [
   [
@@ -23,7 +23,7 @@ const matrices = [
 describe("RowCluesContainer", () => {
   it("renders an element for each row the provided matrix prop", () => {
     matrices.forEach((matrix) => {
-      const { container } = render(<RowCluesContainer matrix={matrix} />);
+      const { container } = render(<RowCluesContainer levelMatrix={matrix} />);
       const rowCluesContainer = container.firstChild;
 
       if (rowCluesContainer) {

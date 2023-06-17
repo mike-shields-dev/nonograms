@@ -1,6 +1,6 @@
 import { Clues, Matrix, MatrixRow } from "../../types";
 
-export default function cluesFromMatrix(matrix: Matrix) {
+export default function cluesArrayFromMatrix(matrix: Matrix) {
   return matrix.map((row: MatrixRow) => {
     const tempClues: Clues = [];
 

@@ -10,7 +10,7 @@ const matrix = [
 
 describe("ColumnCluesContainer", () => {
   it("renders a column for each column of the board", () => {
-    const { container } = render(<ColumnCluesContainer matrix={matrix} />);
+    const { container } = render(<ColumnCluesContainer levelMatrix={matrix} />);
     const columnCluesContainer = container.firstChild;
 
     const gridResolution = matrix.length;

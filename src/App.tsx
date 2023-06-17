@@ -1,28 +1,35 @@
-import { Coords } from "./types";
-import { useEffect, useState } from "react";
-import levels from "./assets/levels.json";
-import toggleState from "./helpers/toggleState/toggleState";
-
-import Header from "./components/Header/Header";
-import Board from "./components/Board/Board";
-import ColumnCluesContainer from "./components/ColumnCluesContainer/ColumnCluesContainer";
-import RowCluesContainer from "./components/RowCluesContainer/RowCluesContainer";
-
 import "./App.css";
-import calculateCompleteness from "./helpers/calculateCompleteness/calculateCompleteness";
+
+import { useEffect, useState } from "react";
+
+import levels from "./assets/levels.json";
+import {
+  Board,
+  ColumnCluesContainer,
+  Header,
+  RowCluesContainer,
+} from "./components";
+
+import {
+  calculateCompleteness,
+  initialUserMatrix,
+  toggleState,
+} from "./helpers";
+
+import { Coords } from "./types";
 
 function App() {
   const [moves, setMoves] = useState(0);
   const [level, setLevel] = useState(0);
 
-  const matrix = levels[level];
-  const gridResolution = matrix.length;
+  const levelMatrix = levels[level];
+  const gridResolution = levelMatrix.length;
 
   const [userMatrix, setUserMatrix] = useState(
-    Array(gridResolution).fill(Array(gridResolution).fill(null))
+    initialUserMatrix(gridResolution)
   );
 
-  const completeness = calculateCompleteness(matrix, userMatrix);
+  calculateCompleteness(levelMatrix, userMatrix);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -41,20 +48,24 @@ function App() {
     setMoves(moves + 1);
   }
 
-  if (JSON.stringify(userMatrix) === JSON.stringify(matrix)) {
+  if (JSON.stringify(userMatrix) === JSON.stringify(levelMatrix)) {
     setLevel(level + 1);
     setMoves(0);
   }
 
   return (
     <>
-      <Header level={level} moves={moves} completeness={completeness} />
+      <Header
+        level={level}
+        moves={moves}
+        completeness={calculateCompleteness(levelMatrix, userMatrix)}
+      />
       <main>
         <div className="column_clues_container_positioner">
-          <ColumnCluesContainer matrix={matrix} />
+          <ColumnCluesContainer levelMatrix={levelMatrix} />
         </div>
         <div className="row_clues_container_positioner">
-          <RowCluesContainer matrix={matrix} />
+          <RowCluesContainer levelMatrix={levelMatrix} />
         </div>
         <div className="board_wrapper">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
