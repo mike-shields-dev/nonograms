@@ -28,9 +28,7 @@ const testCases = [
 describe("Header", () => {
   it("renders the game level", () => {
     testCases.forEach(({ level, moves, completeness }) => {
-      render(
-        <Header level={level} moves={moves} completeness={completeness} />
-      );
+      render(<Header level={level} moves={moves} completed={completeness} />);
 
       expect(screen.getByText(`Level: ${level}`)).toBeTruthy();
       cleanup();
@@ -39,9 +37,7 @@ describe("Header", () => {
 
   it("renders the players moves", () => {
     testCases.forEach(({ level, moves, completeness }) => {
-      render(
-        <Header level={level} moves={moves} completeness={completeness} />
-      );
+      render(<Header level={level} moves={moves} completed={completeness} />);
 
       expect(screen.getByText(`Moves: ${moves}`)).toBeTruthy();
       cleanup();
@@ -50,11 +46,9 @@ describe("Header", () => {
 
   it("renders the completeness of the board", () => {
     testCases.forEach(({ level, moves, completeness }) => {
-      render(
-        <Header level={level} moves={moves} completeness={completeness} />
-      );
+      render(<Header level={level} moves={moves} completed={completeness} />);
 
-      expect(screen.getByText(`%: ${completeness}`)).toBeTruthy();
+      expect(screen.getByText(`Completed: ${completeness}%`)).toBeTruthy();
       cleanup();
     });
   });
