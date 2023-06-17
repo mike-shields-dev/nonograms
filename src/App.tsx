@@ -26,7 +26,7 @@ function App() {
   const [levelMoves, setLevelMoves] = useState(0);
   const [totalMoves, setTotalMoves] = useState(0);
   const [level, setLevel] = useState(0);
-  const [startTime, setStartTime] = useState<Date>();
+  const [startTimeMs, setStartTimeMs] = useState<number>(0);
   const levelMatrix = levels[level];
   const gridResolution = levelMatrix.length;
   const [userMatrix, setUserMatrix] = useState(
@@ -40,6 +40,7 @@ function App() {
   useEffect(() => {
     setCSSGridResolution(gridResolution);
     setUserMatrix(initialUserMatrix(gridResolution));
+    setStartTimeMs(Date.now());
   }, [gridResolution]);
 
   function onCellClick(coords: Coords): void {
