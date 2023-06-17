@@ -9,6 +9,7 @@ import {
   ColumnCluesContainer,
   Header,
   RowCluesContainer,
+  Portal,
 } from "./components";
 
 import {
@@ -25,13 +26,14 @@ function App() {
   const [levelMoves, setLevelMoves] = useState(0);
   const [totalMoves, setTotalMoves] = useState(0);
   const [level, setLevel] = useState(0);
-
+  const [startTime, setStartTime] = useState<Date>();
   const levelMatrix = levels[level];
   const gridResolution = levelMatrix.length;
-
   const [userMatrix, setUserMatrix] = useState(
     initialUserMatrix(gridResolution)
   );
+  const isLevelComplete =
+    JSON.stringify(userMatrix) === JSON.stringify(levelMatrix);
 
   setCSSGridResolution(gridResolution);
 
@@ -51,22 +53,14 @@ function App() {
     setLevelMoves(levelMoves + 1);
   }
 
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-
-    if (JSON.stringify(userMatrix) === JSON.stringify(levelMatrix)) {
-      timer = setTimeout(() => {
-        setLevel(level + 1);
-        setTotalMoves(levelMoves);
-        setLevelMoves(0);
-      }, DURATION * 1500);
-    }
-    return () => clearTimeout(timer);
-  }, [userMatrix, levelMatrix, level, levelMoves]);
-
   return (
     <>
-      <LevelCompletePopup />
+      {isLevelComplete && (
+        <Portal>
+          <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
+          <p>Your Moves: {levelMoves}</p>
+        </Portal>
+      )}
       <Header
         level={level}
         moves={levelMoves}
