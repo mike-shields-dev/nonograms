@@ -1,6 +1,6 @@
 import { Coords, CellState, Matrix, MatrixRow } from "../../types";
 
-import Cell from "../Cell/Cell";
+import { Cell } from "../../components";
 import css from "./Board.module.css";
 
 interface Props {
