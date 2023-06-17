@@ -59,13 +59,14 @@ function App() {
         setLevel(level + 1);
         setTotalMoves(levelMoves);
         setLevelMoves(0);
-      }, 1000);
+      }, DURATION * 1500);
     }
     return () => clearTimeout(timer);
   }, [userMatrix, levelMatrix, level, levelMoves]);
 
   return (
     <>
+      <LevelCompletePopup />
       <Header
         level={level}
         moves={levelMoves}
