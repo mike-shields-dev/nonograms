@@ -46,8 +46,7 @@ function App() {
   }, [gridResolution]);
 
   useEffect(() => {
-    const finishTime = Date.now();
-    setElapsedTimeMs(finishTime - startTimeMs);
+    setElapsedTimeMs(Date.now() - startTimeMs);
   }, [isLevelComplete, startTimeMs]);
 
   function onCellClick(coords: Coords): void {
@@ -61,6 +60,12 @@ function App() {
     setLevelMoves(levelMoves + 1);
   }
 
+  function onNextLevelBtnClick() {
+    setLevel(level + 1);
+    setTotalMoves(totalMoves + levelMoves);
+    setLevelMoves(0);
+  }
+
   return (
     <>
       {isLevelComplete && (
@@ -71,6 +76,7 @@ function App() {
             Time:
             <TimeDisplay durationMs={elapsedTimeMs} />
           </p>
+          <button onClick={onNextLevelBtnClick}>Next Level</button>
         </Portal>
       )}
       <Header
