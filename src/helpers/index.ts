@@ -3,6 +3,7 @@ import initialUserMatrix from "./initialUserMatrix/initialUserMatrix";
 import toggleState from "./toggleState/toggleState";
 import transformMatrix from "./transformMatrix/transformMatrix";
 import cluesArrayFromMatrix from "./cluesArrayFromMatrix/cluesArrayFromMatrix";
+import setCSSGridResolution from "./setCSSGridResolution/setCSSGridResolution";
 
 export {
   calculateCompleteness,
@@ -10,4 +11,5 @@ export {
   toggleState,
   transformMatrix,
   cluesArrayFromMatrix,
+  setCSSGridResolution,
 };

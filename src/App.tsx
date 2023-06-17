@@ -14,6 +14,7 @@ import {
   calculateCompleteness,
   initialUserMatrix,
   toggleState,
+  setCSSGridResolution,
 } from "./helpers";
 
 import { Coords } from "./types";
@@ -29,12 +30,11 @@ function App() {
     initialUserMatrix(gridResolution)
   );
 
-  calculateCompleteness(levelMatrix, userMatrix);
+  setCSSGridResolution(gridResolution);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--grid-resolution", `${gridResolution}`);
-    setUserMatrix(Array(gridResolution).fill(Array(gridResolution).fill(null)));
+    setCSSGridResolution(gridResolution);
+    setUserMatrix(initialUserMatrix(gridResolution));
   }, [gridResolution]);
 
   function onCellClick(coords: Coords): void {

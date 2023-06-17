@@ -1,6 +1,6 @@
 :root {
   --cell-size: 2rem;
-  --grid-resolution: 3; /* dynamic */
+  --grid-resolution: 0; /* dynamic */
 }
 
 body {
