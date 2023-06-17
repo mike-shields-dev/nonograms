@@ -10,6 +10,7 @@ import {
   Header,
   RowCluesContainer,
   Portal,
+  TimeDisplay,
 } from "./components";
 
 import {
@@ -66,6 +67,12 @@ function App() {
         <Portal>
           <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
           <p>Your Moves: {levelMoves}</p>
+          {elapsedTimeMs && (
+            <p>
+              Time:
+              <TimeDisplay durationMs={elapsedTimeMs} />
+            </p>
+          )}
         </Portal>
       )}
       <Header
