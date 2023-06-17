@@ -16,6 +16,7 @@ import {
   initialUserMatrix,
   toggleState,
   setCSSGridResolution,
+  getTargetMoves,
 } from "./helpers";
 
 import { Coords } from "./types";
@@ -68,6 +69,7 @@ function App() {
       <Header
         level={level}
         moves={levelMoves}
+        targetMoves={getTargetMoves(levelMatrix)}
         completeness={calculateCompleteness(levelMatrix, userMatrix)}
       />
       <main>
