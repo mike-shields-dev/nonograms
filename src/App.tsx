@@ -3,6 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import levels from "./assets/levels.json";
+
 import {
   Board,
   ColumnCluesContainer,
@@ -48,10 +49,17 @@ function App() {
     setMoves(moves + 1);
   }
 
-  if (JSON.stringify(userMatrix) === JSON.stringify(levelMatrix)) {
-    setLevel(level + 1);
-    setMoves(0);
-  }
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (JSON.stringify(userMatrix) === JSON.stringify(levelMatrix)) {
+      timer = setTimeout(() => {
+        setLevel(level + 1);
+        setMoves(0);
+      }, 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [userMatrix, levelMatrix, level]);
 
   return (
     <>
