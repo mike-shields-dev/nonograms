@@ -23,6 +23,7 @@ import {
 } from "./helpers";
 import { CellState, Coords, LevelStats } from "./types";
 import RunningTimeDisplay from "./components/RunningTimeDisplay/RunningTimeDisplay";
+import CompletedDisplay from "./components/CompletedDisplay/CompletedDisplay";
 
 function App() {
   const [levelMoves, setLevelMoves] = useState(0);
@@ -89,13 +90,22 @@ function App() {
     setUserMatrix(freshUserMatrix(gridResolution));
   }
 
+  function incrementLevelMoves() {
+    setLevelMoves(levelMoves + 1);
+  }
+
   return (
     <>
-      <Header completed={calculateCompleteness(levelMatrix, userMatrix)}>
+      <Header>
         <LevelDisplay level={level} />
         <MovesDisplay moves={levelMoves} />
         <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
+        <CompletedDisplay
+          onClick={incrementLevelMoves}
+          completed={calculateCompleteness(levelMatrix, userMatrix)}
+        />
       </Header>
+
       <main>
         <div className="column_clues_container_gridarea">
           <ColumnCluesContainer levelMatrix={levelMatrix} />
