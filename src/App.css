@@ -7,6 +7,13 @@ main {
     "row-clues board";
 }
 
+.next_button {
+  margin-top: 1em;
+  padding: 0.25em;
+  font-family: "Tech Mono", monospace;
+  font-size: 1.5rem;
+}
+
 .column_clues_container_gridarea {
   grid-area: column_clues;
 }
