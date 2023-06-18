@@ -15,12 +15,13 @@ import {
 } from "./components";
 import {
   calculateCompleteness,
-  getTargetMoves,
   freshUserMatrix,
+  getTargetMoves,
   setCSSGridResolution,
   toggleState,
 } from "./helpers";
 import { CellState, Coords, LevelStats } from "./types";
+import RunningTimeDisplay from "./components/RunningTimeDisplay/RunningTimeDisplay";
 
 function App() {
   const [levelMoves, setLevelMoves] = useState(0);
@@ -85,6 +86,7 @@ function App() {
       <Header completed={calculateCompleteness(levelMatrix, userMatrix)}>
         <LevelDisplay level={level} />
         <MovesDisplay moves={levelMoves} />
+        <RunningTimeDisplay isRunning={!isLevelComplete} />
       </Header>
       <main>
         <div className="column_clues_container_gridarea">
@@ -93,7 +95,7 @@ function App() {
         <div className="row_clues_container_gridarea">
           <RowCluesContainer levelMatrix={levelMatrix} />
         </div>
-        <div className="board_wrapper">
+        <div className="board_gridarea">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
         </div>
         {isLevelComplete && (

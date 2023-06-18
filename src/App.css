@@ -15,6 +15,6 @@ main {
   grid-area: row-clues;
 }
 
-.board_wrapper {
+.board_gridarea {
   grid-area: board;
 }
