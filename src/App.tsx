@@ -32,6 +32,7 @@ function App() {
   const levelMatrix = levels[level].map((row) => row.map(Boolean));
   const gridResolution = levelMatrix.length;
   const [userMatrix, setUserMatrix] = useState(freshUserMatrix(gridResolution));
+  const [hasGameStarted, setHasGameStarted] = useState(false);
   const isLevelComplete =
     JSON.stringify(userMatrix) === JSON.stringify(levelMatrix);
   const [gameStats, setGameStats] = useState<LevelStats[]>([]);
@@ -40,6 +41,7 @@ function App() {
       totalElapsedTimeMs + elapsedTimeMs,
     0
   );
+
   const totalMoves = gameStats.reduce(
     (totalMoves, { moves }) => totalMoves + moves,
     0
@@ -50,7 +52,6 @@ function App() {
   useEffect(() => {
     setCSSGridResolution(gridResolution);
     setUserMatrix(freshUserMatrix(gridResolution));
-    setStartTimeMs(Date.now());
   }, [gridResolution]);
 
   useEffect(() => {
@@ -77,10 +78,12 @@ function App() {
   }
 
   function onStart() {
-    console.log("onStart");
+    setStartTimeMs(Date.now());
+    setHasGameStarted(true);
   }
 
   function onNext() {
+    setHasGameStarted(false);
     setLevel(level + 1);
     setLevelMoves(0);
     setUserMatrix(freshUserMatrix(gridResolution));
@@ -91,7 +94,7 @@ function App() {
       <Header completed={calculateCompleteness(levelMatrix, userMatrix)}>
         <LevelDisplay level={level} />
         <MovesDisplay moves={levelMoves} />
-        <RunningTimeDisplay isRunning={!isLevelComplete} />
+        <RunningTimeDisplay isRunning={hasGameStarted} />
       </Header>
       <main>
         <div className="column_clues_container_gridarea">
@@ -102,7 +105,7 @@ function App() {
         </div>
         <div className="board_gridarea">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
-          <StartOverlay onClick={onStart} />
+          <StartOverlay onClick={onStart} show={!hasGameStarted} />
         </div>
         {isLevelComplete && (
           <Portal>
@@ -117,7 +120,9 @@ function App() {
               Total Time:
               <TimeDisplay durationMs={totalElapsedTimeMs} />
             </p>
-            <button onClick={onNextLevelBtnClick}>Next Level</button>
+            <button onClick={onNext} className="next_button">
+              Next Level
+            </button>
           </Portal>
         )}
       </main>
