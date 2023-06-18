@@ -17,4 +17,8 @@ main {
 
 .board_gridarea {
   grid-area: board;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
 }
