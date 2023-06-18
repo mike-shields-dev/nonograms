@@ -94,7 +94,7 @@ function App() {
       <Header completed={calculateCompleteness(levelMatrix, userMatrix)}>
         <LevelDisplay level={level} />
         <MovesDisplay moves={levelMoves} />
-        <RunningTimeDisplay isRunning={hasGameStarted} />
+        <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
       </Header>
       <main>
         <div className="column_clues_container_gridarea">
