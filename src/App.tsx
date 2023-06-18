@@ -115,7 +115,7 @@ function App() {
         </div>
         <div className="board_gridarea">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
-          <StartOverlay onClick={onStart} show={!hasGameStarted} />
+          {!hasGameStarted && <StartOverlay onClick={onStart} />}
         </div>
         {isLevelComplete && (
           <Portal>
