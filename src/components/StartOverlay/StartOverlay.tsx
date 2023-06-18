@@ -7,7 +7,9 @@ interface Props {
 export default function StartOverlay({ onClick }: Props) {
   return (
     <div className={css.start_overlay}>
-      <button onClick={onClick}>START</button>
+      <button className={css.start_btn} onClick={onClick}>
+        START
+      </button>
     </div>
   );
 }
