@@ -11,6 +11,7 @@ import {
   MovesDisplay,
   Portal,
   RowCluesContainer,
+  StartOverlay,
   TimeDisplay,
 } from "./components";
 import {
@@ -75,7 +76,11 @@ function App() {
     );
   }
 
-  function onNextLevelBtnClick() {
+  function onStart() {
+    console.log("onStart");
+  }
+
+  function onNext() {
     setLevel(level + 1);
     setLevelMoves(0);
     setUserMatrix(freshUserMatrix(gridResolution));
@@ -97,6 +102,7 @@ function App() {
         </div>
         <div className="board_gridarea">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
+          <StartOverlay onClick={onStart} />
         </div>
         {isLevelComplete && (
           <Portal>
