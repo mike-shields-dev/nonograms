@@ -8,6 +8,7 @@ import {
   ColumnCluesContainer,
   Header,
   LevelDisplay,
+  MovesDisplay,
   Portal,
   RowCluesContainer,
   TimeDisplay,
@@ -79,11 +80,9 @@ function App() {
 
   return (
     <>
-      <Header
-        moves={levelMoves}
-        completed={calculateCompleteness(levelMatrix, userMatrix)}
-      >
+      <Header completed={calculateCompleteness(levelMatrix, userMatrix)}>
         <LevelDisplay level={level} />
+        <MovesDisplay moves={levelMoves} />
       </Header>
       <main>
         <div className="column_clues_container_gridarea">
