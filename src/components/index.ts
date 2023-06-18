@@ -7,6 +7,7 @@ import RowCluesContainer from "./RowCluesContainer/RowCluesContainer";
 import RowClues from "./RowClues/RowClues";
 import Portal from "./Portal/Portal";
 import TimeDisplay from "./TimeDisplay/TimeDisplay";
+import LevelDisplay from "./LevelDisplay/LevelDisplay";
 
 export {
   Cell,
@@ -18,4 +19,5 @@ export {
   Board,
   Portal,
   TimeDisplay,
+  LevelDisplay,
 };

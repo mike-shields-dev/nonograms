@@ -7,6 +7,7 @@ import {
   Board,
   ColumnCluesContainer,
   Header,
+  LevelDisplay,
   Portal,
   RowCluesContainer,
   TimeDisplay,
@@ -79,10 +80,11 @@ function App() {
   return (
     <>
       <Header
-        level={level}
         moves={levelMoves}
         completed={calculateCompleteness(levelMatrix, userMatrix)}
-      />
+      >
+        <LevelDisplay level={level} />
+      </Header>
       <main>
         <div className="column_clues_container_gridarea">
           <ColumnCluesContainer levelMatrix={levelMatrix} />
