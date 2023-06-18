@@ -14,7 +14,7 @@ import {
 import {
   calculateCompleteness,
   getTargetMoves,
-  initialUserMatrix,
+  freshUserMatrix,
   setCSSGridResolution,
   toggleState,
 } from "./helpers";
@@ -28,9 +28,7 @@ function App() {
   const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
   const levelMatrix = levels[level].map((row) => row.map(Boolean));
   const gridResolution = levelMatrix.length;
-  const [userMatrix, setUserMatrix] = useState(
-    initialUserMatrix(gridResolution)
-  );
+  const [userMatrix, setUserMatrix] = useState(freshUserMatrix(gridResolution));
   const isLevelComplete =
     JSON.stringify(userMatrix) === JSON.stringify(levelMatrix);
 
@@ -38,7 +36,7 @@ function App() {
 
   useEffect(() => {
     setCSSGridResolution(gridResolution);
-    setUserMatrix(initialUserMatrix(gridResolution));
+    setUserMatrix(freshUserMatrix(gridResolution));
     setStartTimeMs(Date.now());
   }, [gridResolution]);
 

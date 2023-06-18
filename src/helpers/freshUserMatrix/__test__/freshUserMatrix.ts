@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import initialUserMatrix from "../initialUserMatrix";
+import initialUserMatrix from "../freshUserMatrix";
 
-describe("initialUserMatrix", () => {
+describe("freshUserMatrix", () => {
   it("returns a square matrix filled with null values based on the provided resolution", () => {
     testCases.forEach(({ input, expected }) => {
       expect(initialUserMatrix(input)).toStrictEqual(expected);

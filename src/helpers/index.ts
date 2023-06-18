@@ -1,5 +1,5 @@
 import calculateCompleteness from "./calculateCompleteness/calculateCompleteness";
-import initialUserMatrix from "./initialUserMatrix/initialUserMatrix";
+import freshUserMatrix from "./freshUserMatrix/freshUserMatrix";
 import toggleState from "./toggleState/toggleState";
 import transformMatrix from "./transformMatrix/transformMatrix";
 import cluesArrayFromMatrix from "./cluesArrayFromMatrix/cluesArrayFromMatrix";
@@ -8,7 +8,7 @@ import getTargetMoves from "./getTargetMoves/getTargetMoves";
 
 export {
   calculateCompleteness,
-  initialUserMatrix,
+  freshUserMatrix,
   toggleState,
   transformMatrix,
   cluesArrayFromMatrix,
