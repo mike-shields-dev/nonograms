@@ -78,22 +78,6 @@ function App() {
 
   return (
     <>
-      {isLevelComplete && (
-        <Portal>
-          <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
-          <p>Your Moves: {levelMoves}</p>
-          <p>Total Moves: {totalMoves}</p>
-          <p>
-            Time:
-            <TimeDisplay durationMs={elapsedTimeMs} />
-          </p>
-          <p>
-            Total Time:
-            <TimeDisplay durationMs={totalElapsedTimeMs} />
-          </p>
-          <button onClick={onNextLevelBtnClick}>Next Level</button>
-        </Portal>
-      )}
       <Header
         level={level}
         moves={levelMoves}
@@ -109,6 +93,22 @@ function App() {
         <div className="board_wrapper">
           <Board userMatrix={userMatrix} onCellClick={onCellClick} />
         </div>
+        {isLevelComplete && (
+          <Portal>
+            <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
+            <p>Your Moves: {levelMoves}</p>
+            <p>Total Moves: {totalMoves}</p>
+            <p>
+              Time:
+              <TimeDisplay durationMs={elapsedTimeMs} />
+            </p>
+            <p>
+              Total Time:
+              <TimeDisplay durationMs={totalElapsedTimeMs} />
+            </p>
+            <button onClick={onNextLevelBtnClick}>Next Level</button>
+          </Portal>
+        )}
       </main>
     </>
   );
