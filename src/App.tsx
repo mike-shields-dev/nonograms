@@ -26,7 +26,7 @@ function App() {
   const [level, setLevel] = useState(0);
   const [startTimeMs, setStartTimeMs] = useState<number>(0);
   const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
-  const levelMatrix = levels[level];
+  const levelMatrix = levels[level].map((row) => row.map(Boolean));
   const gridResolution = levelMatrix.length;
   const [userMatrix, setUserMatrix] = useState(
     initialUserMatrix(gridResolution)
