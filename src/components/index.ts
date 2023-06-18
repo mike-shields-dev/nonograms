@@ -9,6 +9,7 @@ import Portal from "./Portal/Portal";
 import TimeDisplay from "./TimeDisplay/TimeDisplay";
 import LevelDisplay from "./LevelDisplay/LevelDisplay";
 import MovesDisplay from "./MovesDisplay/MovesDisplay";
+import StartOverlay from "./StartOverlay/StartOverlay";
 
 export {
   Cell,
@@ -22,4 +23,5 @@ export {
   TimeDisplay,
   LevelDisplay,
   MovesDisplay,
+  StartOverlay,
 };
