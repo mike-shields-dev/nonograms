@@ -10,4 +10,9 @@ type Clue = number;
 
 type Clues = Clue[];
 
-export type { Coords, CellState, Matrix, MatrixRow, Clue, Clues };
+type LevelStats = {
+  time: number;
+  moves: number;
+};
+
+export type { CellState, Clue, Clues, Coords, LevelStats, Matrix, MatrixRow };

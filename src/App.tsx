@@ -18,11 +18,10 @@ import {
   setCSSGridResolution,
   toggleState,
 } from "./helpers";
-import { Coords } from "./types";
+import { CellState, Coords, LevelStats } from "./types";
 
 function App() {
   const [levelMoves, setLevelMoves] = useState(0);
-  const [totalMoves, setTotalMoves] = useState(0);
   const [level, setLevel] = useState(0);
   const [startTimeMs, setStartTimeMs] = useState<number>(0);
   const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
@@ -31,6 +30,16 @@ function App() {
   const [userMatrix, setUserMatrix] = useState(freshUserMatrix(gridResolution));
   const isLevelComplete =
     JSON.stringify(userMatrix) === JSON.stringify(levelMatrix);
+  const [gameStats, setGameStats] = useState<LevelStats[]>([]);
+  const totalElapsedTimeMs = gameStats.reduce(
+    (totalElapsedTimeMs, { time: elapsedTimeMs }) =>
+      totalElapsedTimeMs + elapsedTimeMs,
+    0
+  );
+  const totalMoves = gameStats.reduce(
+    (totalMoves, { moves }) => totalMoves + moves,
+    0
+  );
 
   setCSSGridResolution(gridResolution);
 
@@ -41,24 +50,30 @@ function App() {
   }, [gridResolution]);
 
   useEffect(() => {
-    setElapsedTimeMs(Date.now() - startTimeMs);
-  }, [isLevelComplete, startTimeMs]);
+    if (!isLevelComplete) return;
+
+    const elapsedTimeMs = Date.now() - startTimeMs;
+    const levelStats = { time: elapsedTimeMs, moves: levelMoves };
+
+    setElapsedTimeMs(elapsedTimeMs);
+    setGameStats((gameStats) => [...gameStats, levelStats]);
+  }, [isLevelComplete, startTimeMs, levelMoves]);
 
   function onCellClick(coords: Coords): void {
-    const { x, y } = coords;
-    const tempUserMatrix = userMatrix.map((row) => [...row]);
-    const cellState = tempUserMatrix[y][x];
-
-    tempUserMatrix[y][x] = toggleState(cellState);
-
-    setUserMatrix(tempUserMatrix);
     setLevelMoves(levelMoves + 1);
+    setUserMatrix(
+      userMatrix.map((row, y) =>
+        row.map((cellState: CellState, x: number) =>
+          y === coords.y && x === coords.x ? toggleState(cellState) : cellState
+        )
+      )
+    );
   }
 
   function onNextLevelBtnClick() {
     setLevel(level + 1);
-    setTotalMoves(totalMoves + levelMoves);
     setLevelMoves(0);
+    setUserMatrix(freshUserMatrix(gridResolution));
   }
 
   return (
@@ -67,9 +82,14 @@ function App() {
         <Portal>
           <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
           <p>Your Moves: {levelMoves}</p>
+          <p>Total Moves: {totalMoves}</p>
           <p>
             Time:
             <TimeDisplay durationMs={elapsedTimeMs} />
+          </p>
+          <p>
+            Total Time:
+            <TimeDisplay durationMs={totalElapsedTimeMs} />
           </p>
           <button onClick={onNextLevelBtnClick}>Next Level</button>
         </Portal>
