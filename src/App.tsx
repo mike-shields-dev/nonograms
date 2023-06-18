@@ -62,6 +62,8 @@ function App() {
   }, [isLevelComplete, startTimeMs, levelMoves]);
 
   function onCellClick(coords: Coords): void {
+    if (isLevelComplete) return;
+
     setLevelMoves(levelMoves + 1);
     setUserMatrix(
       userMatrix.map((row, y) =>
