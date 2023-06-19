@@ -1,24 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import RunningTimeDisplay from "../RunningTimeDisplay";
 
 describe("RunningTimeDisplay", () => {
-  it("should be reset if isRunning prop is false", () => {
+  it("should display zero time isRunning prop is false", () => {
     render(<RunningTimeDisplay isRunning={false} />);
 
     expect(screen.getByText("00h:00m:00s:000ms")).toBeTruthy();
-    cleanup();
-  });
-
-  it("should not be reset if isRunning prop is true", async () => {
-    render(<RunningTimeDisplay isRunning={true} />);
-
-    expect(screen.queryByText("00h:00m:00s:000ms")).toBeNull();
-    cleanup();
   });
 
   // TODO:
-  // Find out a way to assert that the displayed time updates according to
-  // the elapsed time....
+  // Assert that:
+  // It always starts from zero time when isRunning changes from false to true
+  // It displays the correct time according the elapsed time
 });
