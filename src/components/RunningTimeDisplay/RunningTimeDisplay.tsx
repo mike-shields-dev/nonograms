@@ -9,13 +9,13 @@ interface Props {
 export default function RunningTimeDisplay({ isRunning }: Props) {
   const [startTimeMs, setStartTimeMs] = useState(0);
   const [elapsedTimeMs, setElapsedTimeMs] = useState(0);
-  const requestRef = useRef<number>();
+  const requestIdRef = useRef<number>();
 
   useEffect(() => {
     function updateElapsedTime() {
       setElapsedTimeMs(Date.now() - startTimeMs);
 
-      requestRef.current = requestAnimationFrame(updateElapsedTime);
+      requestIdRef.current = requestAnimationFrame(updateElapsedTime);
     }
 
     if (isRunning) {
@@ -27,11 +27,9 @@ export default function RunningTimeDisplay({ isRunning }: Props) {
     setElapsedTimeMs(0);
 
     return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
+      requestIdRef.current && cancelAnimationFrame(requestIdRef.current);
     };
-  }, [isRunning, requestRef, startTimeMs]);
+  }, [isRunning, requestIdRef, startTimeMs]);
 
   if (!isRunning) {
     return <TimeDisplay durationMs={0} />;
