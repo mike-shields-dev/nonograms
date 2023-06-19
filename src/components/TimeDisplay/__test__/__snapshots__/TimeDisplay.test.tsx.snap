@@ -1,0 +1,100 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TimeDisplay > with showMilliseconds prop equal to false > matches snapshot 1`] = `
+<div>
+  <span>
+    <span>
+      <span
+        data-testid="time-display-hours"
+      >
+        00
+      </span>
+      <span>
+        h
+      </span>
+      <span>
+        :
+      </span>
+    </span>
+    <span>
+      <span
+        data-testid="time-display-minutes"
+      >
+        00
+      </span>
+      <span>
+        m
+      </span>
+      <span>
+        :
+      </span>
+    </span>
+    <span>
+      <span
+        data-testid="time-display-seconds"
+      >
+        00
+      </span>
+      <span>
+        s
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`TimeDisplay > with showMilliseconds prop equal to true > matches snapshot 1`] = `
+<div>
+  <span>
+    <span>
+      <span
+        data-testid="time-display-hours"
+      >
+        00
+      </span>
+      <span>
+        h
+      </span>
+      <span>
+        :
+      </span>
+    </span>
+    <span>
+      <span
+        data-testid="time-display-minutes"
+      >
+        00
+      </span>
+      <span>
+        m
+      </span>
+      <span>
+        :
+      </span>
+    </span>
+    <span>
+      <span
+        data-testid="time-display-seconds"
+      >
+        00
+      </span>
+      <span>
+        s
+      </span>
+      <span>
+        :
+      </span>
+    </span>
+    <span>
+      <span
+        data-testid="time-display-milliseconds"
+      >
+        000
+      </span>
+      <span>
+        ms
+      </span>
+    </span>
+  </span>
+</div>
+`;

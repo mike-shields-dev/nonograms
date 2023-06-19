@@ -1,25 +1,72 @@
 interface Props {
   durationMs?: number;
+  showMilliseconds?: boolean;
 }
 
-export default function TimeDisplay({ durationMs }: Props) {
-  if (!durationMs && durationMs !== 0) return null;
+export default function TimeDisplay({
+  durationMs,
+  showMilliseconds = false,
+}: Props) {
+  const [hours, minutes, seconds, milliseconds] = [
+    {
+      name: "hours",
+      value: 0,
+      pad: {
+        length: 2,
+        char: "0",
+      },
+      units: "h",
+    },
+    {
+      name: "minutes",
+      value: 0,
+      pad: {
+        length: 2,
+        char: "0",
+      },
+      units: "m",
+    },
+    {
+      name: "seconds",
+      value: 0,
+      pad: {
+        length: 2,
+        char: "0",
+      },
+      units: "s",
+    },
+    {
+      name: "milliseconds",
+      value: 0,
+      pad: {
+        length: 3,
+        char: "0",
+      },
+      units: "ms",
+    },
+  ];
 
-  const HH = Math.floor((durationMs / 1000 / 3600) % 24);
-  const MM = Math.floor((durationMs / 1000 / 60) % 60);
-  const SS = Math.floor((durationMs / 1000) % 60);
-  const ms = Math.floor(durationMs % 1000);
+  if (typeof durationMs === "number") {
+    hours.value = Math.floor((durationMs / 1000 / 3600) % 24);
+    minutes.value = Math.floor((durationMs / 1000 / 60) % 60);
+    seconds.value = Math.floor((durationMs / 1000) % 60);
+    milliseconds.value = showMilliseconds ? durationMs % 1000 : 0;
+  }
 
-  const units = ["h", "m", "s", "ms"];
-
-  const formattedTime = [HH, MM, SS, ms]
-    .map((values, i) =>
-      values
-        .toString()
-        .concat(units[i])
-        .padStart(units[i] !== "ms" ? 3 : 5, "0")
-    )
-    .join(":");
-
-  return <span>{formattedTime}</span>;
+  return (
+    <span>
+      {(showMilliseconds
+        ? [hours, minutes, seconds, milliseconds]
+        : [hours, minutes, seconds]
+      ).map(({ value, name, units, pad: { length, char } }, i, array) => (
+        <span key={`time-display-${name}`}>
+          <span data-testid={`time-display-${name}`}>
+            {`${value}`.padStart(length, char)}
+          </span>
+          <span>{units}</span>
+          {i < array.length - 1 && <span>:</span>}
+        </span>
+      ))}
+    </span>
+  );
 }

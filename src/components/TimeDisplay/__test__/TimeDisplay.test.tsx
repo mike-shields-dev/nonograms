@@ -1,118 +1,258 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import TimeDisplay from "../TimeDisplay";
 
 describe("TimeDisplay", () => {
-  it("should not display anything if durationMs prop is not provided", () => {
-    const { container } = render(<TimeDisplay />);
-    const timeDisplayElement = container.firstChild;
+  afterEach(() => cleanup());
 
-    expect(timeDisplayElement).toBeNull();
-  });
+  describe("with showMilliseconds prop equal to true", () => {
+    it("matches snapshot", () => {
+      const { container } = render(
+        <TimeDisplay durationMs={0} showMilliseconds={true} />
+      );
 
-  it("should display a given duration of time in ms in the format HH:MM:SS:ms", () => {
-    milliSecondsTestCases.forEach(({ durationMs, expected }) => {
-      render(<TimeDisplay durationMs={durationMs} />);
-
-      expect(screen.getByText(expected)).toBeTruthy();
-
-      cleanup();
-    });
-
-    secondsTestCases.forEach(({ durationMs, expected }) => {
-      render(<TimeDisplay durationMs={durationMs} />);
-
-      expect(screen.getByText(expected)).toBeTruthy();
-
-      cleanup();
-    });
-
-    minutesTestCases.forEach(({ durationMs, expected }) => {
-      render(<TimeDisplay durationMs={durationMs} />);
-
-      expect(screen.getByText(expected)).toBeTruthy();
-
-      cleanup();
+      expect(container).toMatchSnapshot();
     });
 
     hoursTestCases.forEach(({ durationMs, expected }) => {
-      render(<TimeDisplay durationMs={durationMs} />);
+      it("renders hours correctly", () => {
+        render(<TimeDisplay durationMs={durationMs} showMilliseconds={true} />);
 
-      expect(screen.getByText(expected)).toBeTruthy();
+        expect(screen.getByTestId("time-display-hours").textContent).toBe(
+          expected.hours
+        );
+      });
+    });
+
+    minutesTestCases.forEach(({ durationMs, expected }) => {
+      it("renders minutes correctly", () => {
+        render(<TimeDisplay durationMs={durationMs} showMilliseconds={true} />);
+
+        expect(screen.getByTestId("time-display-minutes").textContent).toBe(
+          expected.minutes
+        );
+      });
+    });
+
+    secondsTestCases.forEach(({ durationMs, expected }) => {
+      it("renders seconds correctly", () => {
+        render(<TimeDisplay durationMs={durationMs} showMilliseconds={true} />);
+
+        expect(screen.getByTestId("time-display-seconds").textContent).toBe(
+          expected.seconds
+        );
+      });
 
       cleanup();
+    });
+
+    millisecondsTestCases.forEach(({ durationMs, expected }) => {
+      it("renders milliseconds correctly", () => {
+        render(<TimeDisplay durationMs={durationMs} showMilliseconds={true} />);
+
+        expect(
+          screen.getByTestId("time-display-milliseconds").textContent
+        ).toBe(expected.milliseconds);
+      });
+    });
+  });
+
+  describe("with showMilliseconds prop equal to false", () => {
+    it("matches snapshot", () => {
+      const { container } = render(
+        <TimeDisplay durationMs={0} showMilliseconds={false} />
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it("does not display milliseconds", () => {
+      render(<TimeDisplay durationMs={0} showMilliseconds={false} />);
+
+      expect(screen.queryByTestId("time-display-milliseconds")).toBeNull();
+    });
+
+    hoursTestCases.forEach(({ durationMs, expected }) => {
+      it("renders hours correctly", () => {
+        render(
+          <TimeDisplay durationMs={durationMs} showMilliseconds={false} />
+        );
+
+        expect(screen.getByTestId("time-display-hours").textContent).toBe(
+          expected.hours
+        );
+      });
+    });
+
+    minutesTestCases.forEach(({ durationMs, expected }) => {
+      it("renders minutes correctly", () => {
+        render(
+          <TimeDisplay durationMs={durationMs} showMilliseconds={false} />
+        );
+
+        expect(screen.getByTestId("time-display-minutes").textContent).toBe(
+          expected.minutes
+        );
+      });
+    });
+
+    secondsTestCases.forEach(({ durationMs, expected }) => {
+      it("renders seconds correctly", () => {
+        render(
+          <TimeDisplay durationMs={durationMs} showMilliseconds={false} />
+        );
+
+        expect(screen.getByTestId("time-display-seconds").textContent).toBe(
+          expected.seconds
+        );
+      });
     });
   });
 });
 
-const milliSecondsTestCases = [
+const millisecondsTestCases = [
   {
     durationMs: 0,
-    expected: "00h:00m:00s:000ms",
+    expected: {
+      milliseconds: "000",
+      seconds: "00",
+      minutes: "00",
+      hours: "00",
+    },
   },
   {
     durationMs: 1,
-    expected: "00h:00m:00s:001ms",
+    expected: {
+      milliseconds: "001",
+      seconds: "00",
+      minutes: "00",
+      hours: "00",
+    },
   },
   {
     durationMs: 9,
-    expected: "00h:00m:00s:009ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "009",
+    },
   },
   {
     durationMs: 10,
-    expected: "00h:00m:00s:010ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "010",
+    },
   },
   {
     durationMs: 99,
-    expected: "00h:00m:00s:099ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "099",
+    },
   },
   {
     durationMs: 100,
-    expected: "00h:00m:00s:100ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "100",
+    },
   },
   {
     durationMs: 999,
-    expected: "00h:00m:00s:999ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "999",
+    },
   },
 ];
 
 const secondsTestCases = [
   {
     durationMs: 1000,
-    expected: "00h:00m:01s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "01",
+      milliseconds: "000",
+    },
   },
   {
     durationMs: 9000,
-    expected: "00h:00m:09s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "09",
+      milliseconds: "000",
+    },
   },
   {
     durationMs: 10000,
-    expected: "00h:00m:10s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "10",
+      milliseconds: "000",
+    },
   },
   {
     durationMs: 59000,
-    expected: "00h:00m:59s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "00",
+      seconds: "59",
+      milliseconds: "000",
+    },
   },
 ];
 
 const minutesTestCases = [
   {
     durationMs: 60000,
-    expected: "00h:01m:00s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "01",
+      seconds: "00",
+      milliseconds: "000ms",
+    },
   },
   {
     durationMs: 3540000,
-    expected: "00h:59m:00s:000ms",
+    expected: {
+      hours: "00",
+      minutes: "59",
+      seconds: "00",
+      milliseconds: "000",
+    },
   },
 ];
 
 const hoursTestCases = [
   {
     durationMs: 3600000,
-    expected: "01h:00m:00s:000ms",
+    expected: {
+      hours: "01",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "000",
+    },
   },
   {
     durationMs: 82800000,
-    expected: "23h:00m:00s:000ms",
+    expected: {
+      hours: "23",
+      minutes: "00",
+      seconds: "00",
+      milliseconds: "000",
+    },
   },
 ];
