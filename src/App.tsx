@@ -48,6 +48,8 @@ function App() {
     0
   );
 
+  const completed = calculateCompleteness(levelMatrix, userMatrix);
+
   setCSSGridResolution(gridResolution);
 
   useEffect(() => {
@@ -102,8 +104,8 @@ function App() {
         <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
         <CompletedDisplay
           onClick={incrementLevelMoves}
-          completed={calculateCompleteness(levelMatrix, userMatrix)}
-          isDisabled={isLevelComplete}
+          completed={completed}
+          isDisabled={isLevelComplete && completed > 1}
         />
       </Header>
 
@@ -129,7 +131,10 @@ function App() {
             </p>
             <p>
               Total Time:
-              <TimeDisplay durationMs={totalElapsedTimeMs} />
+              <TimeDisplay
+                durationMs={totalElapsedTimeMs}
+                showMilliseconds={true}
+              />
             </p>
             <button onClick={onNext} className="next_button">
               Next Level
