@@ -11,7 +11,23 @@ describe("getTargetMoves", () => {
 
 const testCases = [
   {
+    matrix: [],
+    expected: 0,
+  },
+  {
+    matrix: [[]],
+    expected: 0,
+  },
+  {
+    matrix: [[], [], []],
+    expected: 0,
+  },
+  {
     matrix: [[true]],
     expected: 1,
+  },
+  {
+    matrix: [[false]],
+    expected: 2,
   },
 ];
