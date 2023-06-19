@@ -4,17 +4,19 @@ interface Props {
   onClick?: () => void;
   onBlur?: () => void;
   completed: number;
+  isDisabled: boolean;
 }
 
 export default function CompletedDisplay({
   onClick,
   onBlur,
   completed,
+  isDisabled,
 }: Props) {
   const [show, setShow] = useState(false);
 
   function onShow() {
-    if (show) return;
+    if (show || isDisabled) return;
 
     setShow(true);
     onClick && onClick();

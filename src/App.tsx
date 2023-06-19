@@ -103,6 +103,7 @@ function App() {
         <CompletedDisplay
           onClick={incrementLevelMoves}
           completed={calculateCompleteness(levelMatrix, userMatrix)}
+          isDisabled={isLevelComplete}
         />
       </Header>
 

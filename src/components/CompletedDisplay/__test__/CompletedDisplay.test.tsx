@@ -9,7 +9,7 @@ const blurSpy = vi.fn();
 
 describe("CompletedDisplay", () => {
   it("should display a button", () => {
-    render(<CompletedDisplay completed={0} />);
+    render(<CompletedDisplay completed={0} isDisabled={true} />);
 
     expect(screen.getByRole("button")).toBeTruthy();
 
@@ -25,7 +25,7 @@ describe("CompletedDisplay", () => {
   });
 
   it("should display the 'complete' hint when the button is clicked", async () => {
-    render(<CompletedDisplay completed={0} />);
+    render(<CompletedDisplay completed={0} isDisabled={true} />);
 
     await userEvent.click(screen.getByRole("button"));
 
@@ -45,7 +45,9 @@ describe("CompletedDisplay", () => {
   });
 
   it("should invoke the onClick handler when the button is clicked", async () => {
-    render(<CompletedDisplay completed={0} onClick={clickSpy} />);
+    render(
+      <CompletedDisplay completed={0} onClick={clickSpy} isDisabled={true} />
+    );
 
     await userEvent.click(screen.getByRole("button"));
 
