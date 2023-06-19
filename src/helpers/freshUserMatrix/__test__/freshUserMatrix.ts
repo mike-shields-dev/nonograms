@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import initialUserMatrix from "../freshUserMatrix";
+import freshUserMatrix from "../freshUserMatrix";
 
 describe("freshUserMatrix", () => {
   it("returns a square matrix filled with null values based on the provided resolution", () => {
     testCases.forEach(({ input, expected }) => {
-      expect(initialUserMatrix(input)).toStrictEqual(expected);
+      expect(freshUserMatrix(input)).toStrictEqual(expected);
     });
   });
 });
