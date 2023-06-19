@@ -18,24 +18,23 @@ export default function RunningTimeDisplay({ isRunning }: Props) {
       requestRef.current = requestAnimationFrame(updateElapsedTime);
     }
 
-    if (isRunning && startTimeMs === 0) {
+    if (isRunning) {
       setStartTimeMs(Date.now());
+      updateElapsedTime();
+      return;
     }
 
-    if (isRunning) {
-      updateElapsedTime();
-    }
+    setElapsedTimeMs(0);
+
     return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
     };
   }, [isRunning, requestRef, startTimeMs]);
 
   if (!isRunning) {
-    return (
-      <div data-testid="running_timer">
-        <TimeDisplay durationMs={0} />
-      </div>
-    );
+    return <TimeDisplay durationMs={0} />;
   }
 
   return <TimeDisplay durationMs={elapsedTimeMs} />;
