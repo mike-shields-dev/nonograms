@@ -30,7 +30,7 @@ export default function CompletedDisplay({
   return (
     <span>
       {show ? `Complete: ${completed}%` : ""}
-      <button onClick={onShow} onBlur={onHide}>
+      <button onClick={onShow} disabled={isDisabled} onBlur={onHide}>
         Hint
       </button>
     </span>
