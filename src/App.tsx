@@ -105,7 +105,7 @@ function App() {
         <CompletedDisplay
           onClick={incrementLevelMoves}
           completed={completed}
-          isDisabled={levelMoves === 0}
+          isDisabled={levelMoves === 0 || isLevelComplete}
         />
       </Header>
 
