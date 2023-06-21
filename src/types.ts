@@ -2,9 +2,9 @@ type Coords = { x: number; y: number };
 
 type CellState = boolean | null;
 
-type MatrixRow = CellState[];
+type GridRow = CellState[];
 
-type Matrix = MatrixRow[];
+type Grid = GridRow[];
 
 type Clue = number;
 
@@ -15,4 +15,4 @@ type LevelStats = {
   moves: number;
 };
 
-export type { CellState, Clue, Clues, Coords, LevelStats, Matrix, MatrixRow };
+export type { CellState, Clue, Clues, Coords, Grid, GridRow, LevelStats };

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import ColumnCluesContainer from "../ColumnCluesContainer";
 
-const matrix = [
+const Grid = [
   [true, false, true],
   [true, false, true],
   [true, true, true],
@@ -10,10 +10,10 @@ const matrix = [
 
 describe("ColumnCluesContainer", () => {
   it("renders a column for each column of the board", () => {
-    const { container } = render(<ColumnCluesContainer levelMatrix={matrix} />);
+    const { container } = render(<ColumnCluesContainer levelGrid={Grid} />);
     const columnCluesContainer = container.firstChild;
 
-    const gridResolution = matrix.length;
+    const gridResolution = Grid.length;
 
     const columns = columnCluesContainer?.childNodes;
 

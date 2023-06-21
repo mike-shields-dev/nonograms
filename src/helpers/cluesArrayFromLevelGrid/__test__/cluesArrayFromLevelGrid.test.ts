@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import cluesArrayFromMatrix from "../cluesArrayFromMatrix";
+import cluesArrayFromLevelGrid from "../cluesArrayFromLevelGrid";
 
 const testCases = [
   {
@@ -41,10 +41,10 @@ const testCases = [
   },
 ];
 
-describe("cluesArrayFromMatrix", () => {
-  it("returns a number for each group of consecutive true values in a matrix row", () => {
+describe("cluesArrayFromLevelGrid", () => {
+  it("returns a number for each group of consecutive true values in a Grid row", () => {
     testCases.forEach((testCase) => {
-      expect(cluesArrayFromMatrix(testCase.input)).toStrictEqual(
+      expect(cluesArrayFromLevelGrid(testCase.input)).toStrictEqual(
         testCase.expected
       );
     });

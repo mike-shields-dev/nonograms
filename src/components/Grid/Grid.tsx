@@ -1,17 +1,16 @@
-import { Coords, CellState, Matrix, MatrixRow } from "../../types";
-
-import { Cell } from "../../components";
-import css from "./Board.module.css";
+import { Cell } from "..";
+import { CellState, Coords, Grid, GridRow } from "../../types";
+import css from "./Grid.module.css";
 
 interface Props {
-  userMatrix: Matrix;
+  grid: Grid;
   onCellClick: (coords: Coords) => void;
 }
 
-export default function Board({ userMatrix, onCellClick }: Props) {
+export default function Grid({ grid: grid, onCellClick }: Props) {
   return (
     <div className={css.Board}>
-      {userMatrix.map((row: MatrixRow, y) =>
+      {grid.map((row: GridRow, y) =>
         row.map((state: CellState, x) => (
           <Cell
             coords={{ x, y }}

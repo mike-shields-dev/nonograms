@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import freshUserMatrix from "../freshUserMatrix";
+import freshUserGrid from "../freshUserGrid";
 
-describe("freshUserMatrix", () => {
-  it("returns a square matrix filled with null values based on the provided resolution", () => {
+describe("freshUserGrid", () => {
+  it("returns a square Grid filled with null values based on the provided resolution", () => {
     testCases.forEach(({ input, expected }) => {
-      expect(freshUserMatrix(input)).toStrictEqual(expected);
+      expect(freshUserGrid(input)).toStrictEqual(expected);
     });
   });
 });

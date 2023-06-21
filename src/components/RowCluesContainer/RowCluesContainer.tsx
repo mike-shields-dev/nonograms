@@ -1,14 +1,14 @@
 import { RowClues } from "../../components";
-import { cluesArrayFromMatrix } from "../../helpers/";
-import { Clues, Matrix } from "../../types";
+import { cluesArrayFromLevelGrid } from "../../helpers/";
+import { Clues, Grid } from "../../types";
 import css from "./RowCluesContainer.module.css";
 
 interface Props {
-  levelMatrix: Matrix;
+  levelGrid: Grid;
 }
 
-export default function RowCluesContainer({ levelMatrix: matrix }: Props) {
-  const rowCluesArr = cluesArrayFromMatrix(matrix);
+export default function RowCluesContainer({ levelGrid: Grid }: Props) {
+  const rowCluesArr = cluesArrayFromLevelGrid(Grid);
 
   return (
     <div className={css.row_clues_container}>

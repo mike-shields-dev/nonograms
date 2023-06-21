@@ -1,7 +1,7 @@
-import { Clues, Matrix, MatrixRow } from "../../types";
+import { Clues, Grid, GridRow } from "../../types";
 
-export default function cluesArrayFromMatrix(matrix: Matrix) {
-  return matrix.map((row: MatrixRow) => {
+export default function cluesArrayFromLevelGrid(Grid: Grid) {
+  return Grid.map((row: GridRow) => {
     const tempClues: Clues = [];
 
     return row.reduce((tempClues, cell, cellIndex) => {

@@ -3,20 +3,20 @@ import calculateCompleteness from "../calculateCompleteness";
 
 describe("calculateCompleteness", () => {
   it("returns the percentage of similarity between two arrays", () => {
-    testCases.forEach(({ matrixA, matrixB, similarity }) => {
-      expect(calculateCompleteness(matrixA, matrixB)).toEqual(similarity);
+    testCases.forEach(({ GridA, GridB, similarity }) => {
+      expect(calculateCompleteness(GridA, GridB)).toEqual(similarity);
     });
   });
 });
 
 const testCases = [
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -24,12 +24,12 @@ const testCases = [
     similarity: 100,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, true, true],
       [true, true, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -37,12 +37,12 @@ const testCases = [
     similarity: 89,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, true, true],
       [true, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -50,12 +50,12 @@ const testCases = [
     similarity: 78,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, true, true],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -63,12 +63,12 @@ const testCases = [
     similarity: 67,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, true, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -76,12 +76,12 @@ const testCases = [
     similarity: 56,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [true, false, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -89,12 +89,12 @@ const testCases = [
     similarity: 44,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true],
       [false, false, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -102,12 +102,12 @@ const testCases = [
     similarity: 33,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, false],
       [false, false, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -115,12 +115,12 @@ const testCases = [
     similarity: 22,
   },
   {
-    matrixA: [
+    GridA: [
       [true, false, false],
       [false, false, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -128,12 +128,12 @@ const testCases = [
     similarity: 11,
   },
   {
-    matrixA: [
+    GridA: [
       [false, false, false],
       [false, false, false],
       [false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true],
       [true, true, true],
       [true, true, true],
@@ -141,13 +141,13 @@ const testCases = [
     similarity: 0,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
@@ -156,13 +156,13 @@ const testCases = [
     similarity: 100,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
@@ -171,13 +171,13 @@ const testCases = [
     similarity: 94,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
@@ -186,13 +186,13 @@ const testCases = [
     similarity: 94,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [true, true, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
@@ -201,13 +201,13 @@ const testCases = [
     similarity: 88,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [true, false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
@@ -216,13 +216,13 @@ const testCases = [
     similarity: 81,
   },
   {
-    matrixA: [
+    GridA: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],
       [false, false, false, false],
     ],
-    matrixB: [
+    GridB: [
       [true, true, true, true],
       [true, true, true, true],
       [true, true, true, true],

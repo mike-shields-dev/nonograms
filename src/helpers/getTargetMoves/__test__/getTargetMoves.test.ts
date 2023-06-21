@@ -3,31 +3,31 @@ import getTargetMoves from "../getTargetMoves";
 
 describe("getTargetMoves", () => {
   it("should return the minimum number of moves that complete the level", () => {
-    testCases.forEach(({ matrix, expected }) => {
-      expect(getTargetMoves(matrix)).toBe(expected);
+    testCases.forEach(({ grid, expected }) => {
+      expect(getTargetMoves(grid)).toBe(expected);
     });
   });
 });
 
 const testCases = [
   {
-    matrix: [],
+    grid: [],
     expected: 0,
   },
   {
-    matrix: [[]],
+    grid: [[]],
     expected: 0,
   },
   {
-    matrix: [[], [], []],
+    grid: [[], [], []],
     expected: 0,
   },
   {
-    matrix: [[true]],
+    grid: [[true]],
     expected: 1,
   },
   {
-    matrix: [[false]],
+    grid: [[false]],
     expected: 2,
   },
 ];

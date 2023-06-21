@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import transformMatrix from "../transformMatrix";
+import transformGrid from "../transformGrid";
 
 const testCases = [
   {
@@ -26,10 +26,10 @@ const testCases = [
   },
 ];
 
-describe("transformMatrix", () => {
-  it("returns the matrix diagonally flipped along the axis top-left to bottom-right", () => {
+describe("transformGrid", () => {
+  it("returns the Grid diagonally flipped along the axis top-left to bottom-right", () => {
     testCases.forEach((testCase) => {
-      expect(transformMatrix(testCase.input)).toStrictEqual(testCase.expected);
+      expect(transformGrid(testCase.input)).toStrictEqual(testCase.expected);
     });
   });
 });

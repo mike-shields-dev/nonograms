@@ -1,17 +1,17 @@
 import calculateCompleteness from "./calculateCompleteness/calculateCompleteness";
-import freshUserMatrix from "./freshUserMatrix/freshUserMatrix";
-import toggleState from "./toggleState/toggleState";
-import transformMatrix from "./transformMatrix/transformMatrix";
-import cluesArrayFromMatrix from "./cluesArrayFromMatrix/cluesArrayFromMatrix";
-import setCSSGridResolution from "./setCSSGridResolution/setCSSGridResolution";
+import cluesArrayFromLevelGrid from "./cluesArrayFromLevelGrid/cluesArrayFromLevelGrid";
+import freshUserGrid from "./freshUserGrid/freshUserGrid";
 import getTargetMoves from "./getTargetMoves/getTargetMoves";
+import setCSSGridResolution from "./setCSSGridResolution/setCSSGridResolution";
+import toggleState from "./toggleState/toggleState";
+import transformGrid from "./transformGrid/transformGrid";
 
 export {
   calculateCompleteness,
-  freshUserMatrix,
-  toggleState,
-  transformMatrix,
-  cluesArrayFromMatrix,
-  setCSSGridResolution,
+  cluesArrayFromLevelGrid,
+  freshUserGrid,
   getTargetMoves,
+  setCSSGridResolution,
+  toggleState,
+  transformGrid,
 };

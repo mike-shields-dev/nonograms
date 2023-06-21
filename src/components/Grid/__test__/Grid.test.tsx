@@ -1,12 +1,14 @@
-import { it, expect, describe, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
-import Board from "../Board";
+import { describe, expect, it, vi } from "vitest";
+
+import { cleanup, render, screen } from "@testing-library/react";
+
+import Grid from "../Grid";
 
 const onCellClick = vi.fn();
 
 type Level = (boolean | null)[][];
 
-const userMatrices: Level[] = [
+const testGrids: Level[] = [
   [
     [null, null, null],
     [null, null, null],
@@ -22,10 +24,10 @@ const userMatrices: Level[] = [
 
 describe("Board", () => {
   it("displays the correct number of grid cells based on the gridResolution", () => {
-    userMatrices.forEach((userMatrix) => {
-      const cellCount = userMatrix.length ** 2;
+    testGrids.forEach((grid) => {
+      const cellCount = grid.length ** 2;
 
-      render(<Board userMatrix={userMatrix} onCellClick={onCellClick} />);
+      render(<Grid grid={grid} onCellClick={onCellClick} />);
 
       expect(screen.getAllByRole("button")).toHaveLength(cellCount);
 

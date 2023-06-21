@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import levels from "./assets/levels.json";
 import {
-  Board,
+  Grid,
   ColumnCluesContainer,
   Header,
   LevelDisplay,
@@ -16,7 +16,7 @@ import {
 } from "./components";
 import {
   calculateCompleteness,
-  freshUserMatrix,
+  freshUserGrid,
   getTargetMoves,
   setCSSGridResolution,
   toggleState,
@@ -30,12 +30,12 @@ function App() {
   const [level, setLevel] = useState(0);
   const [startTimeMs, setStartTimeMs] = useState<number>(0);
   const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
-  const levelMatrix = levels[level].map((row) => row.map(Boolean));
-  const gridResolution = levelMatrix.length;
-  const [userMatrix, setUserMatrix] = useState(freshUserMatrix(gridResolution));
+  const levelGrid = levels[level].map((row) => row.map(Boolean));
+  const gridResolution = levelGrid.length;
+  const [userGrid, setUserGrid] = useState(freshUserGrid(gridResolution));
   const [hasGameStarted, setHasGameStarted] = useState(false);
   const isLevelComplete =
-    JSON.stringify(userMatrix) === JSON.stringify(levelMatrix);
+    JSON.stringify(userGrid) === JSON.stringify(levelGrid);
   const [gameStats, setGameStats] = useState<LevelStats[]>([]);
   const totalElapsedTimeMs = gameStats.reduce(
     (totalElapsedTimeMs, { time: elapsedTimeMs }) =>
@@ -48,13 +48,13 @@ function App() {
     0
   );
 
-  const completed = calculateCompleteness(levelMatrix, userMatrix);
+  const completed = calculateCompleteness(levelGrid, userGrid);
 
   setCSSGridResolution(gridResolution);
 
   useEffect(() => {
     setCSSGridResolution(gridResolution);
-    setUserMatrix(freshUserMatrix(gridResolution));
+    setUserGrid(freshUserGrid(gridResolution));
   }, [gridResolution]);
 
   useEffect(() => {
@@ -71,8 +71,8 @@ function App() {
     if (isLevelComplete) return;
 
     setLevelMoves(levelMoves + 1);
-    setUserMatrix(
-      userMatrix.map((row, y) =>
+    setUserGrid(
+      userGrid.map((row, y) =>
         row.map((cellState: CellState, x: number) =>
           y === coords.y && x === coords.x ? toggleState(cellState) : cellState
         )
@@ -89,7 +89,7 @@ function App() {
     setHasGameStarted(false);
     setLevel(level + 1);
     setLevelMoves(0);
-    setUserMatrix(freshUserMatrix(gridResolution));
+    setUserGrid(freshUserGrid(gridResolution));
   }
 
   function incrementLevelMoves() {
@@ -103,7 +103,7 @@ function App() {
         <MovesDisplay moves={levelMoves} />
         <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
         <CompletedDisplay
-          onClick={incrementLevelMoves}
+          onFocus={incrementLevelMoves}
           completed={completed}
           isDisabled={levelMoves === 0 || isLevelComplete}
         />
@@ -111,18 +111,18 @@ function App() {
 
       <main>
         <div className="column_clues_container_gridarea">
-          <ColumnCluesContainer levelMatrix={levelMatrix} />
+          <ColumnCluesContainer levelGrid={levelGrid} />
         </div>
         <div className="row_clues_container_gridarea">
-          <RowCluesContainer levelMatrix={levelMatrix} />
+          <RowCluesContainer levelGrid={levelGrid} />
         </div>
         <div className="board_gridarea">
-          <Board userMatrix={userMatrix} onCellClick={onCellClick} />
+          <Grid grid={userGrid} onCellClick={onCellClick} />
           {!hasGameStarted && <StartOverlay onClick={onStart} />}
         </div>
         {isLevelComplete && (
           <Portal>
-            <p>Target Moves: {getTargetMoves(levelMatrix)}</p>
+            <p>Target Moves: {getTargetMoves(levelGrid)}</p>
             <p>Your Moves: {levelMoves}</p>
             <p>Total Moves: {totalMoves}</p>
             <p>
