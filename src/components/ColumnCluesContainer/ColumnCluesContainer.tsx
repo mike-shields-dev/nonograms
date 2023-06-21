@@ -1,5 +1,5 @@
-import { cluesArrayFromLevelGrid, transformGrid } from "../../helpers";
-import "../../helpers/transformGrid/transformGrid";
+import { cluesArrayFromLevelGrid, transformGrid } from "../../utils";
+import "../../utils/transformGrid/transformGrid";
 import { Grid } from "../../types";
 import { ColumnClues } from "../../components";
 import css from "./ColumnCluesContainer.module.css";

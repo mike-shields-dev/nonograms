@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { Grid } from "../../types";
+import { calculateCompleteness } from "../../utils";
 
 interface Props {
   onClick?: () => void;
   onBlur?: () => void;
-  completed: number;
+  userGrid: Grid;
+  levelGrid: Grid;
   isDisabled: boolean;
 }
 
 export default function CompletedDisplay({
   onClick,
   onBlur,
-  completed,
+  userGrid,
+  levelGrid,
   isDisabled,
 }: Props) {
   const [show, setShow] = useState(false);
@@ -27,7 +31,7 @@ export default function CompletedDisplay({
 
   return (
     <span>
-      {show ? `Complete: ${completed}%` : ""}
+      {show ? `Complete: ${calculateCompleteness(userGrid, levelGrid)}%` : ""}
       <button
         title="toggle hint"
         disabled={isDisabled || show}
