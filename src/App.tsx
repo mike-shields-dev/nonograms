@@ -89,7 +89,7 @@ function App() {
   return (
     <>
       <Header>
-        <LevelDisplay level={level} />
+        <LevelDisplay level={level + 1} />
         <MovesDisplay moves={levelMoves} />
         <RunningTimeDisplay isRunning={hasLevelStarted && !isLevelComplete} />
         <CompletedDisplay
