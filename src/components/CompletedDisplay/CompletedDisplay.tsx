@@ -34,8 +34,8 @@ export default function CompletedDisplay({
       {show ? `Complete: ${calculateCompleteness(userGrid, levelGrid)}%` : ""}
       <button
         title="toggle hint"
-        disabled={isDisabled || show}
-        onClick={onBtnClick}
+        disabled={isDisabled}
+        onFocus={onBtnClick}
         onBlur={onBtnBlur}
       >
         Hint
