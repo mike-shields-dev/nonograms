@@ -4,26 +4,25 @@ import { useEffect, useState } from "react";
 
 import levels from "./assets/levels.json";
 import {
-  Grid,
   ColumnCluesContainer,
+  CompletedDisplay,
+  Grid,
   Header,
   LevelDisplay,
   MovesDisplay,
   Portal,
   RowCluesContainer,
+  RunningTimeDisplay,
   StartOverlay,
   TimeDisplay,
 } from "./components";
+import { CellState, Coords, LevelStats } from "./types";
 import {
-  calculateCompleteness,
   freshUserGrid,
   getTargetMoves,
   setCSSGridResolution,
   toggleState,
-} from "./helpers";
-import { CellState, Coords, LevelStats } from "./types";
-import RunningTimeDisplay from "./components/RunningTimeDisplay/RunningTimeDisplay";
-import CompletedDisplay from "./components/CompletedDisplay/CompletedDisplay";
+} from "./utils";
 
 function App() {
   const [levelMoves, setLevelMoves] = useState(0);

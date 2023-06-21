@@ -1,5 +1,5 @@
 import { RowClues } from "../../components";
-import { cluesArrayFromLevelGrid } from "../../helpers/";
+import { cluesArrayFromLevelGrid } from "../../utils";
 import { Clues, Grid } from "../../types";
 import css from "./RowCluesContainer.module.css";
 

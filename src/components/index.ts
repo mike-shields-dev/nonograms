@@ -10,6 +10,8 @@ import RowClues from "./RowClues/RowClues";
 import RowCluesContainer from "./RowCluesContainer/RowCluesContainer";
 import StartOverlay from "./StartOverlay/StartOverlay";
 import TimeDisplay from "./TimeDisplay/TimeDisplay";
+import RunningTimeDisplay from "./RunningTimeDisplay/RunningTimeDisplay";
+import CompletedDisplay from "./CompletedDisplay/CompletedDisplay";
 
 export {
   Cell,
@@ -24,4 +26,6 @@ export {
   RowCluesContainer,
   StartOverlay,
   TimeDisplay,
+  RunningTimeDisplay,
+  CompletedDisplay,
 };
