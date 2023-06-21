@@ -1,7 +1,5 @@
 import "./App.css";
-
 import { useEffect, useState } from "react";
-
 import levels from "./assets/levels.json";
 import {
   ColumnCluesContainer,
@@ -28,12 +26,12 @@ function App() {
   const [gameStats, setGameStats] = useState<LevelStats[]>([]);
   const totalMoves = gameStats.reduce((total, { moves }) => total + moves, 0);
   const totalElapsedTimeMs = gameStats.reduce(
-    (total, { time }) => total + time,
+    (total, { finishTime }) => total + finishTime,
     0
   );
-  const [hasGameStarted, setHasGameStarted] = useState(false);
+  const [hasLevelStarted, setHasLevelStarted] = useState(false);
   const [startTimeMs, setStartTimeMs] = useState<number>(0);
-  const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
+  const [levelFinishTime, setLevelFinishTime] = useState<number>();
   const [levelMoves, setLevelMoves] = useState(0);
   const [level, setLevel] = useState(0);
   const levelGrid = levels[level].map((row) => row.map(Boolean));
@@ -52,10 +50,10 @@ function App() {
   useEffect(() => {
     if (!isLevelComplete) return;
 
-    const elapsedTimeMs = Date.now() - startTimeMs;
-    const levelStats = { time: elapsedTimeMs, moves: levelMoves };
+    const levelFinishTime = Date.now() - startTimeMs;
+    const levelStats = { finishTime: levelFinishTime, moves: levelMoves };
 
-    setElapsedTimeMs(elapsedTimeMs);
+    setLevelFinishTime(levelFinishTime);
     setGameStats((gameStats) => [...gameStats, levelStats]);
   }, [isLevelComplete, startTimeMs, levelMoves]);
 
@@ -74,11 +72,11 @@ function App() {
 
   function onStart() {
     setStartTimeMs(Date.now());
-    setHasGameStarted(true);
+    setHasLevelStarted(true);
   }
 
   function onNext() {
-    setHasGameStarted(false);
+    setHasLevelStarted(false);
     setLevel(level + 1);
     setLevelMoves(0);
     setUserGrid(freshUserGrid(gridResolution));
@@ -93,7 +91,7 @@ function App() {
       <Header>
         <LevelDisplay level={level} />
         <MovesDisplay moves={levelMoves} />
-        <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
+        <RunningTimeDisplay isRunning={hasLevelStarted && !isLevelComplete} />
         <CompletedDisplay
           onClick={incrementLevelMoves}
           userGrid={userGrid}
@@ -111,7 +109,7 @@ function App() {
         </div>
         <div className="board_gridarea">
           <Grid grid={userGrid} onCellClick={onCellClick} />
-          {!hasGameStarted && <StartOverlay onClick={onStart} />}
+          {!hasLevelStarted && <StartOverlay onClick={onStart} />}
         </div>
         {isLevelComplete && (
           <Portal>
@@ -120,7 +118,7 @@ function App() {
             <p>Total Moves: {totalMoves}</p>
             <p>
               Time:
-              <TimeDisplay durationMs={elapsedTimeMs} />
+              <TimeDisplay durationMs={levelFinishTime} />
             </p>
             <p>
               Total Time:

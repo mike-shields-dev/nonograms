@@ -11,7 +11,7 @@ type Clue = number;
 type Clues = Clue[];
 
 type LevelStats = {
-  time: number;
+  finishTime: number;
   moves: number;
 };
 
