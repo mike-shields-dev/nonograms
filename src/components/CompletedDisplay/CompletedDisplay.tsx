@@ -15,22 +15,25 @@ export default function CompletedDisplay({
 }: Props) {
   const [show, setShow] = useState(false);
 
-  function onShow() {
-    if (show || isDisabled) return;
-
+  function onBtnClick() {
     setShow(true);
-    onClick && onClick();
+    onClick?.();
   }
 
-  function onHide() {
+  function onBtnBlur() {
     setShow(false);
-    onBlur && onBlur();
+    onBlur?.();
   }
 
   return (
     <span>
       {show ? `Complete: ${completed}%` : ""}
-      <button onClick={onShow} disabled={isDisabled} onBlur={onHide}>
+      <button
+        title="toggle hint"
+        disabled={isDisabled || show}
+        onClick={onBtnClick}
+        onBlur={onBtnBlur}
+      >
         Hint
       </button>
     </span>

@@ -1,11 +1,16 @@
-import { describe, expect, it, vi } from "vitest";
-import { cleanup, render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, vi, expect } from "vitest";
+import {
+  cleanup,
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import CompletedDisplay from "../CompletedDisplay";
 
-const clickSpy = vi.fn();
-const blurSpy = vi.fn();
+const onClickSpy = vi.fn();
+const onBlurSpy = vi.fn();
 
 describe("CompletedDisplay", () => {
   it("should display a button", () => {
@@ -17,55 +22,80 @@ describe("CompletedDisplay", () => {
   });
 
   it("the button should have a title of 'toggle hint'", () => {
-    render(<CompletedDisplay completed={0} />);
+    render(<CompletedDisplay completed={0} isDisabled={true} />);
 
-    expect(screen.getByRole("button")).toBeTruthy();
+    expect(screen.getByRole("button").getAttribute("title")).toBe(
+      "toggle hint"
+    );
 
     cleanup();
   });
 
-  it("should display the 'complete' hint when the button is clicked", async () => {
+  it("clicking the button should not show the hint if isDisabled prop is true", async () => {
     render(<CompletedDisplay completed={0} isDisabled={true} />);
+
+    fireEvent.click(screen.getByRole("button"));
+
+    expect(screen.queryByText(/complete/i)).toBeFalsy();
+
+    cleanup();
+  });
+
+  it("clicking the button should show the hint if isDisabled prop is false", async () => {
+    render(<CompletedDisplay completed={0} isDisabled={false} />);
 
     await userEvent.click(screen.getByRole("button"));
 
-    expect(screen.getByText(/complete:/i)).toBeTruthy();
+    expect(screen.queryByText(/complete/i)).toBeTruthy();
 
     cleanup();
   });
 
-  it("should hide the hint when the button loses focus", async () => {
-    render(<CompletedDisplay completed={0} />);
-
-    fireEvent.blur(screen.getByRole("button"));
-
-    expect(screen.queryByText(/complete:/i)).toBeNull();
-
-    cleanup();
-  });
-
-  it("should invoke the onClick handler when the button is clicked", async () => {
+  it("clicking the button should invoke the onClick handler", async () => {
     render(
-      <CompletedDisplay completed={0} onClick={clickSpy} isDisabled={true} />
+      <CompletedDisplay completed={0} isDisabled={false} onClick={onClickSpy} />
     );
 
     await userEvent.click(screen.getByRole("button"));
 
-    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
 
     cleanup();
   });
 
-  it("should not invoke the onClick handler if the hint is already showing", async () => {
-    // TODO: figure out how to assert this
+  it("clicking the button multiple times will not invoke the onClick handler more than once", async () => {
+    render(
+      <CompletedDisplay completed={0} isDisabled={false} onClick={onClickSpy} />
+    );
+
+    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getByRole("button"));
+
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
+
+    cleanup();
   });
 
-  it("should invoke the onClick handler when the button is clicked", async () => {
-    render(<CompletedDisplay completed={0} onBlur={blurSpy} />);
+  it("when the button loses focus, the hint should not be shown", async () => {
+    render(
+      <CompletedDisplay completed={0} isDisabled={false} onClick={onClickSpy} />
+    );
 
     fireEvent.blur(screen.getByRole("button"));
 
-    expect(blurSpy).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText(/complete/i)).toBeNull();
+
+    cleanup();
+  });
+
+  it("the onBlur handler should be invoked when the button loses focus", async () => {
+    render(
+      <CompletedDisplay completed={0} isDisabled={false} onBlur={onBlurSpy} />
+    );
+
+    fireEvent.blur(screen.getByRole("button"));
+
+    expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
     cleanup();
   });

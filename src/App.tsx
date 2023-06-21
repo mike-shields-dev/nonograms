@@ -103,7 +103,7 @@ function App() {
         <MovesDisplay moves={levelMoves} />
         <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
         <CompletedDisplay
-          onFocus={incrementLevelMoves}
+          onClick={incrementLevelMoves}
           completed={completed}
           isDisabled={levelMoves === 0 || isLevelComplete}
         />
