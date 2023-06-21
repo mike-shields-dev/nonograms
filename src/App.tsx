@@ -25,29 +25,22 @@ import {
 } from "./utils";
 
 function App() {
-  const [levelMoves, setLevelMoves] = useState(0);
-  const [level, setLevel] = useState(0);
+  const [gameStats, setGameStats] = useState<LevelStats[]>([]);
+  const totalMoves = gameStats.reduce((total, { moves }) => total + moves, 0);
+  const totalElapsedTimeMs = gameStats.reduce(
+    (total, { time }) => total + time,
+    0
+  );
+  const [hasGameStarted, setHasGameStarted] = useState(false);
   const [startTimeMs, setStartTimeMs] = useState<number>(0);
   const [elapsedTimeMs, setElapsedTimeMs] = useState<number>();
+  const [levelMoves, setLevelMoves] = useState(0);
+  const [level, setLevel] = useState(0);
   const levelGrid = levels[level].map((row) => row.map(Boolean));
   const gridResolution = levelGrid.length;
   const [userGrid, setUserGrid] = useState(freshUserGrid(gridResolution));
-  const [hasGameStarted, setHasGameStarted] = useState(false);
   const isLevelComplete =
     JSON.stringify(userGrid) === JSON.stringify(levelGrid);
-  const [gameStats, setGameStats] = useState<LevelStats[]>([]);
-  const totalElapsedTimeMs = gameStats.reduce(
-    (totalElapsedTimeMs, { time: elapsedTimeMs }) =>
-      totalElapsedTimeMs + elapsedTimeMs,
-    0
-  );
-
-  const totalMoves = gameStats.reduce(
-    (totalMoves, { moves }) => totalMoves + moves,
-    0
-  );
-
-  const completed = calculateCompleteness(levelGrid, userGrid);
 
   setCSSGridResolution(gridResolution);
 
@@ -103,7 +96,8 @@ function App() {
         <RunningTimeDisplay isRunning={hasGameStarted && !isLevelComplete} />
         <CompletedDisplay
           onClick={incrementLevelMoves}
-          completed={completed}
+          userGrid={userGrid}
+          levelGrid={levelGrid}
           isDisabled={levelMoves === 0 || isLevelComplete}
         />
       </Header>
