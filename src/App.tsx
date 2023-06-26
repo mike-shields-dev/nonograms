@@ -132,6 +132,7 @@ function App() {
             </button>
           </Portal>
         )}
+        {!hasLevelStarted && <StartOverlay onClick={onStart} />}
       </main>
     </>
   );
