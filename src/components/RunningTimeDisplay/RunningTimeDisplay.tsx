@@ -7,33 +7,37 @@ interface Props {
 }
 
 export default function RunningTimeDisplay({ isRunning }: Props) {
-  const [startTimeMs, setStartTimeMs] = useState(0);
-  const [elapsedTimeMs, setElapsedTimeMs] = useState(0);
-  const requestIdRef = useRef<number>();
+  const [startTime, setStartTime] = useState<number>(0);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const updateDuration = 100;
 
   useEffect(() => {
-    function updateElapsedTime() {
-      setElapsedTimeMs(Date.now() - startTimeMs);
-
-      requestIdRef.current = requestAnimationFrame(updateElapsedTime);
-    }
-
-    if (isRunning) {
-      setStartTimeMs(Date.now());
-      updateElapsedTime();
+    if (!isRunning) {
+      setElapsedTime(0);
+      setStartTime(0);
       return;
     }
 
-    setElapsedTimeMs(0);
+    !startTime && setStartTime(Date.now());
 
-    return () => {
-      requestIdRef.current && cancelAnimationFrame(requestIdRef.current);
-    };
-  }, [isRunning, requestIdRef, startTimeMs]);
+    timerRef.current = setTimeout(counter, updateDuration);
+
+    function counter() {
+      if (!startTime) return;
+
+      const now = Date.now();
+      const elapsedTime = now - startTime;
+
+      setElapsedTime(elapsedTime);
+
+      timerRef.current && clearTimeout(timerRef.current);
+    }
+  }, [isRunning, timerRef, startTime, elapsedTime]);
 
   if (!isRunning) {
     return <TimeDisplay durationMs={0} />;
   }
 
-  return <TimeDisplay durationMs={elapsedTimeMs} />;
+  return <TimeDisplay durationMs={elapsedTime} />;
 }

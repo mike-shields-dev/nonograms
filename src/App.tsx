@@ -109,7 +109,6 @@ function App() {
         </div>
         <div className="board_gridarea">
           <Grid grid={userGrid} onCellClick={onCellClick} />
-          {!hasLevelStarted && <StartOverlay onClick={onStart} />}
         </div>
         {isLevelComplete && (
           <Portal>
