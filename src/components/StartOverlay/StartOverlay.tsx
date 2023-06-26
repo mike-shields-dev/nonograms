@@ -6,7 +6,7 @@ interface Props {
 
 export default function StartOverlay({ onClick }: Props) {
   return (
-    <div className={css.start_overlay}>
+    <div className={`${css.start_overlay} outer-border`}>
       <button className={css.start_btn} onClick={onClick}>
         START
       </button>

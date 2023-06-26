@@ -13,7 +13,7 @@ export default function ColumnCluesContainer({ levelGrid: Grid }: Props) {
   const columnCluesArr = cluesArrayFromLevelGrid(transformedGrid);
 
   return (
-    <div className={css.column_clues_container}>
+    <div className={`${css.column_clues_container} outer-border`}>
       {columnCluesArr.map((columnClues, i) => (
         <ColumnClues key={`column_clues${i}`} columnClues={columnClues} />
       ))}

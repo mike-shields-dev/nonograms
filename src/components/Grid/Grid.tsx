@@ -9,7 +9,7 @@ interface Props {
 
 export default function Grid({ grid: grid, onCellClick }: Props) {
   return (
-    <div className={css.Board}>
+    <div className={`${css.Board} outer-border`}>
       {grid.map((row: GridRow, y) =>
         row.map((state: CellState, x) => (
           <Cell

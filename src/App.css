@@ -34,3 +34,7 @@ button {
   grid-template-rows: 1fr;
   place-items: center;
 }
+
+.outer-border {
+  box-shadow: 0px 0px 0px 1px #000;
+}
